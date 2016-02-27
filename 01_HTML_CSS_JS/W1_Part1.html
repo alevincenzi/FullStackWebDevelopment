@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+  <title>My Dating Website</title>
+</head>
+<body>
+
+  <h1>Fill up your profile ... we will definitively find your soul mate!!!</h1>
+
+  <form enctype="multipart/form-data"
+        type="post"
+        action="https://ihome.ust.hk/~rossiter/cgi-bin/show_everything.php"> 
+
+  <fieldset><legend>Your Face</legend>
+
+    <label for="avatar">Your image:</label>
+    <input type="file" name="avatar" id="avatar" required>
+
+    <br>
+
+    <label for="preview">Image preview:</label>
+    <img name="preview" id="preview" width="250">
+
+  </fieldset>
+  <br>
+  <fieldset><legend>Your General Details</legend>
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" placeholder="Your full name" required>
+
+    <br>
+
+    <label for="gender">Gender:</label>
+    <input type="radio" id="radio" name="gender" value=male" required>Male
+    <input type="radio" id="radio" name="gender" value=female">Female
+
+    <br>
+
+    <label for="age">Age:</label>
+    <input type="number" name=age" id=age" maxlength=3" required>
+
+    <br>
+
+    <label for="birthday">Date of Birth:</label>
+    <input type="date" name="birthday" id="birthday">
+
+    <br>
+
+    <label for="mycolor">Favourite Color:</label>
+    <input type="color" name="mycolor" id="mycolor">
+
+    <br>
+
+    <label for="country">Which Country:</label>
+    <select name="country" id="country" >
+        <option value="NS">No Selection</option>  
+        <option value="GB">England</option>  
+        <option value="FR">France</option>  
+        <option value="IT">Italy</option>  
+        <option value="ES">Spain</option>  
+        <option value="DE">Germany</option>  
+    </select>
+
+  </fieldset>
+  <br>
+  <fieldset><legend>Your Indicators</legend>
+
+    <label for="height">Height:</label>
+    Short<input type="range" name="height" id="height" min="0" max="100" value="50" step="5">Tall
+
+    <br>
+
+    <label for="salary">Salary:</label>
+    Poor<input type="range" name="salary" id="salary" min="0" max="100" value="50" step="5">Rich
+
+  </fieldset>
+  <br>
+  <fieldset><legend>Your Contact Information</legend>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required>
+
+    <br>
+
+    <label for="mobile">Mobile:</label>
+    <input type="tel" name="mobile" id="mobile">
+
+    <br>
+
+    <label for="address">Address:</label>
+    <textarea name="address" id="address"></textarea>
+
+    <br>
+
+    <label for="contact">Method to contact you:</label>
+    <input type="checkbox" name="contact" id="contact" value="email">Email 
+    <input type="checkbox" name="contact" id="contact" value="phone">Phone 
+    <input type="checkbox" name="contact" id="contact" value="sms">SMS 
+  </fieldset>
+
+  <br>
+  <input type="submit" value="Get lucky!">
+  </form>
+</body>
+</html>
