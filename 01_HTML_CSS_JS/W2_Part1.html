@@ -1,0 +1,85 @@
+<html>
+  
+  <head>
+      <title>Javascript color guessing game</title>
+  </head>
+  
+  <body onload="do_game()">
+    <script>
+      
+/*
+        var all_colors = ["Black", "Navy", "DarkBlue", "MediumBlue", "Blue", "DarkGreen",
+                          "Green", "Teal", "DarkCyan", "DeepSkyBlue", "DarkTurquoise",
+                          "MediumSpringGreen", "Lime", "SpringGreen", "Aqua", "Cyan",
+                          "MidnightBlue", "DodgerBlue", "LightSeaGreen",  "ForestGreen",
+                          "SeaGreen", "DarkSlateGray", "LimeGreen", "MediumSeaGreen",
+                          "Turquoise", "RoyalBlue", "SteelBlue", "DarkSlateBlue",
+                          "MediumTurquoise", "Indigo", "DarkOliveGreen", "CadetBlue",
+                          "CornflowerBlue", "RebeccaPurple", "MediumAquaMarine", "DimGray",
+                          "SlateBlue", "OliveDrab", "SlateGray", "LightSlateGray",
+                          "MediumSlateBlue", "LawnGreen", "Chartreuse", "Aquamarine",
+                          "Maroon", "Purple", "Olive", "Gray", "SkyBlue", "LightSkyBlue",
+                          "BlueViolet", "DarkRed", "DarkMagenta", "SaddleBrown",
+                          "DarkSeaGreen", "LightGreen", "MediumPurple", "DarkViolet",
+                          "PaleGreen", "DarkOrchid", "YellowGreen", "Sienna", "Brown",
+                          "DarkGray", "LightBlue", "GreenYellow", "PaleTurquoise",
+                          "LightSteelBlue", "PowderBlue", "FireBrick", "DarkGoldenRod",
+                          "MediumOrchid", "RosyBrown", "DarkKhaki", "Silver",
+                          "MediumVioletRed", "IndianRed", "Peru", "Chocolate", "Tan",
+                          "LightGray", "Thistle", "Orchid", "GoldenRod", "PaleVioletRed",
+                          "Crimson", "Gainsboro", "Plum", "BurlyWood", "LightCyan",
+                          "Lavender", "DarkSalmon", "Violet", "PaleGoldenRod", "LightCoral",
+                          "Khaki", "AliceBlue", "HoneyDew", "Azure", "SandyBrown", "Wheat",
+                          "Beige", "WhiteSmoke", "MintCream", "GhostWhite", "Salmon",
+                          "AntiqueWhite", "Linen", "LightGoldenRodYellow", "OldLace",
+                          "Red", "Fuchsia", "Magenta", "DeepPink", "OrangeRed", "Tomato",
+                          "HotPink", "Coral", "DarkOrange", "LightSalmon", "Orange", "LightPink",
+                          "Pink", "Gold", "PeachPuff", "NavajoWhite", "Moccasin", "Bisque",
+                          "MistyRose", "BlanchedAlmond", "PapayaWhip", "LavenderBlush",
+                          "SeaShell", "Cornsilk", "LemonChiffon", "FloralWhite", "Snow",
+                          "Yellow", "LightYellow", "Ivory"];
+*/
+        var colors = [ "Gold", "Ivory", "Yellow", "Linen", "Navy", "Orange", "Red", "Silver", "Teal", "Violet"] ;
+    
+        function do_game() {
+
+            var target = get_random_color(colors);
+
+            show_hint(target);
+
+            var message = "I am thinking of one of these colors:\n\n" +
+                          colors.join(", ") + "\n\n" +
+                          "What color am I thinking of?" 
+
+            while (! check_guess(target, prompt(message)));
+            
+            show_result(target);
+        }
+
+        function get_random_color(colors) {
+        
+            return colors[get_random_number(0, colors.length - 1)];
+        }
+        
+        function get_random_number(nFrom, nTo) {
+
+            return Math.floor((Math.random() * nTo) + nFrom);
+        }
+        
+        function show_hint(color) {
+
+            alert("Guessing color " + color);
+        }
+        
+        function show_result(color) {
+        
+            return;
+        }
+        
+        function check_guess(target, guess) {
+
+            return (guess == target);
+        }
+    </script>
+  </body>
+</html>
