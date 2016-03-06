@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title>Matching Game</title>
+        
+        <style>
+            img { position : absolute }
+            
+            div { position : absolute ;
+                  width    : 500px ;
+                  height   : 500px }
+                  
+            #rightSide { left        : 500px; 
+                         border-left : 1px solid black }
+        </style>
+    </head>
+  
+    <body onload="generateFaces()">
+        <h1>Matching Game</h1>
+        
+        <p>Click on the extra smiling face on the left</p>
+    
+        <div id="leftSide"></div>
+        <div id="rightSide"></div>
+    
+        <script>
+        
+            var numberOfFaces = 5;
+            var theLeftSide   = document.getElementById("leftSide");
+            var theRightSide  = document.getElementById("rightSide");
+
+            function generateFaces(){
+                
+                for (index = 0; index < numberOfFaces; index++) {
+
+                    var smileImage = document.createElement("img");
+                    
+                    smileImage.src  = "http://home.cse.ust.hk/~rossiter/mooc/matching_game/smile.png";
+                    
+                    smileImage.style.top  = get_random_number(0, 400) + "px";
+                    smileImage.style.left = get_random_number(0, 400) + "px";
+                    
+                    theLeftSide.appendChild(smileImage);
+                }
+                
+                var copy = theLeftSide.cloneNode(true);
+
+                copy.removeChild(copy.lastChild);
+                
+                theRightSide.appendChild(copy);
+                
+                var theBody = document.getElementsByTagName("body")[0];
+                
+                theBody.onclick =
+                    
+                    function gameOver() {
+
+                        alert("Game Over!");
+
+                        theBody.onclick = null;
+
+                        theLeftSide.lastChild.onclick = null;
+                    }; 
+
+                theLeftSide.lastChild.onclick =
+                
+                    function nextLevel(event){
+
+                        event.stopPropagation();
+
+                        delete_all_children(theLeftSide);
+                        delete_all_children(copy);
+                        
+                        numberOfFaces += 5;
+
+                        generateFaces();
+                    };
+            }
+            
+            function get_random_number(nFrom, nTo) {
+
+                return Math.floor((Math.random() * nTo) + nFrom);
+            }
+            
+            function delete_all_children(node) {
+            
+                while(node.firstChild)
+
+                    node.removeChild(node.firstChild);
+            }
+        </script>
+    </body>
+</html>
