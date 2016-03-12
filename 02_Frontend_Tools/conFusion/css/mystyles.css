@@ -67,3 +67,16 @@ body{
 .navbar-inverse .navbar-nav .open .dropdown-menu> li> a:hover {
     color:#000000;
 }
+
+@media (min-width: 768px) and (max-width: 1200px){
+    .dl-horizontal dt {
+        width: 100px;
+        white-space: normal;
+    }
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+    .dl-horizontal dd {
+        margin-left: 110px;
+        margin-bottom: 10px;
+    }
+}
