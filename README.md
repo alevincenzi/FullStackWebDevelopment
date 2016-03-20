@@ -8,6 +8,12 @@
 
 ### [Front-End Web UI Frameworks and Tools](https://www.coursera.org/learn/web-frameworks "Go to class")
 
+* Bootstrap css classes (bottons, media, breadcrumb, jumbotron, ...)
+* Bootstrap js components (tabs, forms, modals, ...)
+* Responsive web design
+* Less
+* Bower
+
 ### [Front-End JavaScript Frameworks: AngularJS](https://www.coursera.org/learn/angular-js "Go to class")
 
 ### [Multiplatform Mobile App Development with Web Technologies](https://www.coursera.org/learn/hybrid-mobile-development "Go to class")
