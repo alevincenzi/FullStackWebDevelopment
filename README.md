@@ -8,8 +8,9 @@
 
 ### [Front-End Web UI Frameworks and Tools](https://www.coursera.org/learn/web-frameworks "Go to class")
 
-* Bootstrap css classes and responsive web design
-* Bootstrap js components (tabs, modals, ...)
+* Bootstrap css classes (bottons, media, breadcrumb, jumbotron, ...)
+* Bootstrap js components (tabs, forms, modals, ...)
+* Responsive web design
 * Less
 * Bower
 
