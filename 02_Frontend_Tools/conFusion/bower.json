@@ -1,0 +1,26 @@
+{
+  "name": "conFusion",
+  "homepage": "http://alevincenzi.github.io/02_Frontend_Tools/conFusion/index.html",
+  "authors": [
+    "AVincenzi <alessandro84.vincenzi@gmail.com>"
+  ],
+  "description": "Yet another website for learning purposes",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "conFusion"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.5.0"
+  }
+}
