@@ -1,0 +1,15 @@
+{
+  "name": "node-examples",
+  "version": "1.0.0",
+  "description": "just some execises",
+  "main": "simplerect.js",
+  "dependencies": {
+    "yargs": "^4.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node simplerect && exit 0"
+  },
+  "author": "AV",
+  "license": "NONE"
+}
