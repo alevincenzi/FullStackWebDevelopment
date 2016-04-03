@@ -24,5 +24,6 @@
 * Node Applications and Modules (yargs, path, fs, utils, ...)
 * Callbacks and Error Handling
 * Http, Express (generator), Morgan, Router
+* MongoDB, Mongoose
 
 ### [Capstone Project](https://www.coursera.org/learn/capstone-project "Go to class")
