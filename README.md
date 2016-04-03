@@ -23,6 +23,6 @@
 
 * Node Applications and Modules (yargs, path, fs, utils, ...)
 * Callbacks and Error Handling
-* Http, Express, Morgan, Router
+* Http, Express (generator), Morgan, Router
 
 ### [Capstone Project](https://www.coursera.org/learn/capstone-project "Go to class")
