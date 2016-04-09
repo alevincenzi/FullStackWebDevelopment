@@ -1,63 +1,81 @@
 var express    = require('express');
 var util       = require('util');
 var bodyParser = require('body-parser');
+var mongoose   = require('mongoose');
 
-var getDishes =
-	'Will send all the dishes to you!';
-var postDishes =
-	'Will add the dish: %s with details: %s';
-var deleteDishes =
-	'Deleting all dishes';
-var getDishById =
-	'Will send details of the dish: %d to you!';
-var putDishById =
-	'Updating the dish: %d\n' +
-	'Will update the dish: %s with details: %s';
-var deleteDishById =
-	'Deleting dish: %d';
+var Dishes = require('../models/dishes');
 	
 var dishRouter = express.Router();
 
 dishRouter.use(bodyParser.json());
 
 dishRouter.route('/')
-.all(
-	function(req, res, next) {
-		res.writeHead(200, { 'Content-Type': 'text/plain' });
-		next();
-	}
-).get(
-	function(req, res, next){
-		res.end(getDishes);
-	}
+.get(
+    Dishes.find(
+		{},
+		function (err, dish) {
+			
+			if (err) throw err;
+			res.json(dish);
+		}
+	);
 ).post(
-	function(req, res, next){
-		res.end(util.format(postDishes, req.body.name, req.body.description));    
-	}
+    Dishes.create(
+		req.body,
+		function (err, dish) {
+			
+			if (err) throw err;
+			console.log('Dish created!');
+			
+			var id = dish._id;
+
+			res.writeHead(200, {
+				'Content-Type': 'text/plain'
+			});
+			res.end('Added the dish with id: ' + id);
+		}
+	);
 ).delete(
-	function(req, res, next){
-		res.end(deleteDishes);
-	}
+    Dishes.remove(
+		{},
+		function (err, resp) {
+			
+			if (err) throw err;
+			res.json(resp);
+		}
+	);
 );
 
 dishRouter.route('/:dishId')
-.all(
-	function(req, res, next) {
-		res.writeHead(200, { 'Content-Type': 'text/plain' });
-		next();
-	}
-).get(
-	function(req, res, next){
-        res.end(util.format(getDishById, req.params.dishId));
-	}
+.get(
+    Dishes.findById(
+		req.params.dishId,
+		function (err, dish) {
+			
+			if (err) throw err;
+			res.json(dish);
+		}
+	);
 ).put(
-	function(req, res, next){
-		res.end(util.format(putDishById, req.params.dishId, req.body.name, req.body.description));
-	}
+    Dishes.findByIdAndUpdate(
+		req.params.dishId,
+		{ $set: req.body },
+		{ new: true },
+		function (err, dish) {
+        
+			if (err) throw err;
+			res.json(dish);
+		}
+	);
 ).delete(
-	function(req, res, next){
-		res.end(util.format(deleteDishById, req.params.dishId));
-	}
+    Dishes.findByIdAndRemove(
+		req.params.dishId,
+		function (err, resp) {
+
+			if (err) throw err;
+			res.json(resp);
+		}
+	);
 );
 
 module.exports = dishRouter;
