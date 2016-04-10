@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var leadershipSchema = new Schema(
+var leaderSchema = new Schema(
 	{
 		name: {
 			type:     String,
@@ -29,6 +29,6 @@ var leadershipSchema = new Schema(
 	{ timestamps: true }
 );
 
-var Leaderships = mongoose.model('Leadership', leadershipSchema);
+var Leaders = mongoose.model('Leadership', leaderSchema);
 
-module.exports = Leaderships;
+module.exports = Leaders;

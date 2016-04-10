@@ -3,7 +3,7 @@ var util       = require('util');
 var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 
-var Leaderships = require('../models/leaderships');
+var Leaders = require('../models/leaders');
 	
 var leaderRouter = express.Router();
 
@@ -12,7 +12,7 @@ leaderRouter.use(bodyParser.json());
 leaderRouter.route('/')
 .get(
 	function (req, res, next) {
-		Leaderships.find(
+		Leaders.find(
 			{},
 			function (err, leader) {
 				if (err) throw err;
@@ -22,7 +22,7 @@ leaderRouter.route('/')
 	}
 ).post(
 	function (req, res, next) {
-		Leaderships.create(
+		Leaders.create(
 			req.body,
 			function (err, leader) {
 				if (err) throw err;
@@ -37,7 +37,7 @@ leaderRouter.route('/')
 	}
 ).delete(
 	function (req, res, next) {
-		Leaderships.remove(
+		Leaders.remove(
 			{},
 			function (err, resp) {
 				if (err) throw err;
@@ -50,7 +50,7 @@ leaderRouter.route('/')
 leaderRouter.route('/:leaderId')
 .get(
 	function (req, res, next) {
-		Leaderships.findById(
+		Leaders.findById(
 			req.params.leaderId,
 			function (err, leader) {
 				if (err) throw err;
@@ -60,7 +60,7 @@ leaderRouter.route('/:leaderId')
 	}
 ).put(
 	function (req, res, next) {
-		Leaderships.findByIdAndUpdate(
+		Leaders.findByIdAndUpdate(
 			req.params.leaderId,
 			{ $set: req.body },
 			{ new: true },
@@ -72,7 +72,7 @@ leaderRouter.route('/:leaderId')
 	}
 ).delete(
 	function (req, res, next) {
-		Leaderships.findByIdAndRemove(
+		Leaders.findByIdAndRemove(
 			req.params.leaderId,
 			function (err, resp) {
 				if (err) throw err;
