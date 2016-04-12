@@ -1,2 +1,2 @@
 npm install express morgan body-parser --save
-node server
+node server-basic
