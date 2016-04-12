@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 
 var Leaders = require('../models/leaders');
+var Verify  = require('./verify');
 	
 var leaderRouter = express.Router();
 
@@ -11,6 +12,8 @@ leaderRouter.use(bodyParser.json());
 
 leaderRouter.route('/')
 .get(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Leaders.find(
 			{},
@@ -21,6 +24,8 @@ leaderRouter.route('/')
 		);
 	}
 ).post(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Leaders.create(
 			req.body,
@@ -36,6 +41,8 @@ leaderRouter.route('/')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Leaders.remove(
 			{},
@@ -49,6 +56,8 @@ leaderRouter.route('/')
 
 leaderRouter.route('/:leaderId')
 .get(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Leaders.findById(
 			req.params.leaderId,
@@ -59,6 +68,8 @@ leaderRouter.route('/:leaderId')
 		);
 	}
 ).put(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Leaders.findByIdAndUpdate(
 			req.params.leaderId,
@@ -71,6 +82,8 @@ leaderRouter.route('/:leaderId')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Leaders.findByIdAndRemove(
 			req.params.leaderId,

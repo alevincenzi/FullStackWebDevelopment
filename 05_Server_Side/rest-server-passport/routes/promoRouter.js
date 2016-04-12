@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 
 var Promotions = require('../models/promotions');
+var Verify     = require('./verify');
 	
 var promoRouter = express.Router();
 
@@ -11,6 +12,8 @@ promoRouter.use(bodyParser.json());
 
 promoRouter.route('/')
 .get(
+	Verify.verifyOrdinaryUser,
+
 	function (req, res, next) {
 		Promotions.find(
 			{},
@@ -21,6 +24,8 @@ promoRouter.route('/')
 		);
 	}
 ).post(
+	Verify.verifyOrdinaryUser,
+
 	function (req, res, next) {
 		Promotions.create(
 			req.body,
@@ -36,6 +41,8 @@ promoRouter.route('/')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
+
 	function (req, res, next) {
 		Promotions.remove(
 			{},
@@ -49,6 +56,8 @@ promoRouter.route('/')
 
 promoRouter.route('/:promoId')
 .get(
+	Verify.verifyOrdinaryUser,
+
 	function (req, res, next) {
 		Promotions.findById(
 			req.params.promoId,
@@ -59,6 +68,8 @@ promoRouter.route('/:promoId')
 		);
 	}
 ).put(
+	Verify.verifyOrdinaryUser,
+
 	function (req, res, next) {
 		Promotions.findByIdAndUpdate(
 			req.params.promoId,
@@ -71,6 +82,8 @@ promoRouter.route('/:promoId')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
+
 	function (req, res, next) {
 		Promotions.findByIdAndRemove(
 			req.params.promoId,

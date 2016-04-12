@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 
 var Dishes = require('../models/dishes');
+var Verify = require('./verify');
 	
 var dishRouter = express.Router();
 
@@ -11,6 +12,8 @@ dishRouter.use(bodyParser.json());
 
 dishRouter.route('/')
 .get(
+	Verify.verifyOrdinaryUser,
+
 	function (req, res, next) {
 		Dishes.find(
 			{},
@@ -21,6 +24,8 @@ dishRouter.route('/')
 		);
 	}
 ).post(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Dishes.create(
 			req.body,
@@ -36,6 +41,8 @@ dishRouter.route('/')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
+
 	function (req, res, next) {
 		Dishes.remove(
 			{},
@@ -49,6 +56,8 @@ dishRouter.route('/')
 
 dishRouter.route('/:dishId')
 .get(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Dishes.findById(
 			req.params.dishId,
@@ -59,6 +68,8 @@ dishRouter.route('/:dishId')
 		);
 	}
 ).put(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Dishes.findByIdAndUpdate(
 			req.params.dishId,
@@ -71,6 +82,8 @@ dishRouter.route('/:dishId')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Dishes.findByIdAndRemove(
 			req.params.dishId,
@@ -84,6 +97,8 @@ dishRouter.route('/:dishId')
 
 dishRouter.route('/:dishId/comments')
 .get(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {	
 		Dishes.findById(
 			req.params.dishId,
@@ -94,6 +109,8 @@ dishRouter.route('/:dishId/comments')
 		);
 	}
 ).post(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Dishes.findById(
 			req.params.dishId,
@@ -111,6 +128,8 @@ dishRouter.route('/:dishId/comments')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Dishes.findById(
 			req.params.dishId,
@@ -135,6 +154,8 @@ dishRouter.route('/:dishId/comments')
 
 dishRouter.route('/:dishId/comments/:commentId')
 .get(
+	Verify.verifyOrdinaryUser,
+	
 	function (req, res, next) {
 		Dishes.findById(
 			req.params.dishId,
@@ -145,6 +166,8 @@ dishRouter.route('/:dishId/comments/:commentId')
 		);
 	}
 ).put(
+	Verify.verifyOrdinaryUser,
+
     // We delete the existing commment and insert the updated
     // comment as a new comment
 	function (req, res, next) {
@@ -165,6 +188,8 @@ dishRouter.route('/:dishId/comments/:commentId')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
+
 	function (req, res, next) {
 		Dishes.findById(
 			req.params.dishId,
