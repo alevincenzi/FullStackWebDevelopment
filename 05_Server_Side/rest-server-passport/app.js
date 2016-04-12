@@ -1,20 +1,21 @@
-var express      = require('express');
-var path         = require('path');
-var favicon      = require('serve-favicon');
-var logger       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var mongoose     = require('mongoose');
+var express       = require('express');
+var path          = require('path');
+var favicon       = require('serve-favicon');
+var logger        = require('morgan');
+var cookieParser  = require('cookie-parser');
+var bodyParser    = require('body-parser');
+var mongoose      = require('mongoose');
+var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
+var config       = require('./config');
 var routes       = require('./routes/index');
 var users        = require('./routes/users');
 var dishRouter   = require('./routes/dishRouter');
 var promoRouter  = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 
-var url = 'mongodb://localhost:27017/conFusion';
-
-mongoose.connect(url);
+mongoose.connect(mongoUrl);
 
 var db = mongoose.connection;
 
