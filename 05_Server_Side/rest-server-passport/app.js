@@ -41,6 +41,19 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// passport config
+app.use(passport.initialize());
+
+var User = require('./models/user');
+
+passport.use(
+	new LocalStrategy(User.authenticate()));
+passport.serializeUser(
+	User.serializeUser());
+passport.deserializeUser(
+	User.deserializeUser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/',           routes);
@@ -64,7 +77,7 @@ if (app.get('env') === 'development') {
 	app.use(
 		function(err, req, res, next) {
 			res.status(err.status || 500);
-			res.render('error', {
+			res.json({
 				message: err.message,
 				error: err
 			});
@@ -77,7 +90,7 @@ if (app.get('env') === 'development') {
 app.use(
 	function(err, req, res, next) {
 		res.status(err.status || 500);
-		res.render('error', {
+		res.json({
 			message: err.message,
 			error: {}
 		});
