@@ -10,3 +10,5 @@ node server-cookie
 
 npm install express-session session-file-store --save
 node server-session
+
+- - > login form directly supported by chrome/firefox

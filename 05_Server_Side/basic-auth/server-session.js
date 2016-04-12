@@ -1,6 +1,7 @@
-var express      = require('express');
-var morgan       = require('morgan');
-var cookieParser = require('cookie-parser');
+var express   = require('express');
+var morgan    = require('morgan');
+var session   = require('express-session');
+var FileStore = require('session-file-store')(session);
 
 var hostname = 'localhost';
 var port = 3000;
@@ -9,13 +10,21 @@ var app = express();
 
 app.use(morgan('dev'));
 
-app.use(cookieParser('12345-67890-09876-54321')); // secret key
+app.use(session(
+	{
+		name             : 'session-id',
+		secret           : '12345-67890-09876-54321',
+		saveUninitialized: true,
+		resave           : true,
+		store            : new FileStore()
+	}
+));
 
 function auth (req, res, next) {
 	
 	console.log(req.headers);
 
-    if (!req.signedCookies.user) {
+    if (!req.session.user) {
 		
         var authHeader = req.headers.authorization;
         
@@ -36,7 +45,7 @@ function auth (req, res, next) {
         
 		if (user == 'admin' && pass == 'password') {
         
-			res.cookie('user', 'admin', {signed: true});
+			req.session.user = 'admin';
             next(); // authorized
         
 		} else {
@@ -47,9 +56,10 @@ function auth (req, res, next) {
         }
     }
     else {
-		// When cookies are included ...
+		// When session info is set ...
 		
-        if (req.signedCookies.user === 'admin') {
+        if (req.session.user === 'admin') {
+            console.log('req.session: ', req.session);
             next();
         }
         else {
