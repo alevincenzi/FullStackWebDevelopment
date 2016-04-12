@@ -15,7 +15,7 @@ var dishRouter   = require('./routes/dishRouter');
 var promoRouter  = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 
-mongoose.connect(mongoUrl);
+mongoose.connect(config.mongoUrl);
 
 var db = mongoose.connection;
 
