@@ -8,6 +8,7 @@ var router = express.Router();
 
 router.route('/')
 .get(
+	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 	
 	function (req, res, next) {
@@ -84,6 +85,8 @@ router.route('/login')
 
 router.route('/logout')
 .get(
+	Verify.verifyOrdinaryUser,
+
 	function(req, res) {
 		req.logout();
 		res.status(200).json(

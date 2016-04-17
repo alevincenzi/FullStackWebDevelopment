@@ -24,6 +24,7 @@ dishRouter.route('/')
 		);
 	}
 ).post(
+	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 	
 	function (req, res, next) {
@@ -41,6 +42,7 @@ dishRouter.route('/')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 
 	function (req, res, next) {
@@ -68,6 +70,7 @@ dishRouter.route('/:dishId')
 		);
 	}
 ).put(
+	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 	
 	function (req, res, next) {
@@ -82,6 +85,7 @@ dishRouter.route('/:dishId')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 	
 	function (req, res, next) {
@@ -109,6 +113,7 @@ dishRouter.route('/:dishId/comments')
 		);
 	}
 ).post(
+	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 	
 	function (req, res, next) {
@@ -128,6 +133,7 @@ dishRouter.route('/:dishId/comments')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 	
 	function (req, res, next) {
@@ -166,6 +172,7 @@ dishRouter.route('/:dishId/comments/:commentId')
 		);
 	}
 ).put(
+	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 
     // We delete the existing commment and insert the updated
@@ -188,6 +195,7 @@ dishRouter.route('/:dishId/comments/:commentId')
 		);
 	}
 ).delete(
+	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 
 	function (req, res, next) {
