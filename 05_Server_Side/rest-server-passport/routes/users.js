@@ -1,18 +1,28 @@
 var express  = require('express');
-var router   = express.Router();
 var passport = require('passport');
-var User     = require('../models/user');
-var Verify   = require('./verify');
 
-/* GET users listing. */
-router.get('/',
-	function(req, res, next) {
-		res.send('respond with a resource');
+var User   = require('../models/user');
+var Verify = require('./verify');
+
+var router = express.Router();
+
+router.route('/')
+.get(
+	Verify.verifyAdmin,
+	
+	function (req, res, next) {
+		User.find(
+			{},
+			function (err, user) {
+				if (err) throw err;
+				res.json(user);
+			}
+		);
 	}
 );
 
-router.post(
-	'/register',
+router.route('/register')
+.post(
 	function(req, res) {
     
 		User.register(
@@ -36,8 +46,8 @@ router.post(
 	}
 );
 
-router.post(
-	'/login',
+router.route('/login')
+.post(
 	function(req, res, next) {
 		
 		passport.authenticate('local',
@@ -72,8 +82,8 @@ router.post(
 	}
 );
 
-router.get(
-	'/logout',
+router.route('/logout')
+.get(
 	function(req, res) {
 		req.logout();
 		res.status(200).json(
