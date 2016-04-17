@@ -24,7 +24,7 @@ leaderRouter.route('/')
 		);
 	}
 ).post(
-	Verify.verifyOrdinaryUser,
+	Verify.verifyAdmin,
 	
 	function (req, res, next) {
 		Leaders.create(
@@ -41,7 +41,7 @@ leaderRouter.route('/')
 		);
 	}
 ).delete(
-	Verify.verifyOrdinaryUser,
+	Verify.verifyAdmin,
 	
 	function (req, res, next) {
 		Leaders.remove(
@@ -68,7 +68,7 @@ leaderRouter.route('/:leaderId')
 		);
 	}
 ).put(
-	Verify.verifyOrdinaryUser,
+	Verify.verifyAdmin,
 	
 	function (req, res, next) {
 		Leaders.findByIdAndUpdate(
@@ -82,7 +82,7 @@ leaderRouter.route('/:leaderId')
 		);
 	}
 ).delete(
-	Verify.verifyOrdinaryUser,
+	Verify.verifyAdmin,
 	
 	function (req, res, next) {
 		Leaders.findByIdAndRemove(

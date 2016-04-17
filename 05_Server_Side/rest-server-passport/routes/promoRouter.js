@@ -24,7 +24,7 @@ promoRouter.route('/')
 		);
 	}
 ).post(
-	Verify.verifyOrdinaryUser,
+	Verify.verifyAdmin,
 
 	function (req, res, next) {
 		Promotions.create(
@@ -41,7 +41,7 @@ promoRouter.route('/')
 		);
 	}
 ).delete(
-	Verify.verifyOrdinaryUser,
+	Verify.verifyAdmin,
 
 	function (req, res, next) {
 		Promotions.remove(
@@ -68,7 +68,7 @@ promoRouter.route('/:promoId')
 		);
 	}
 ).put(
-	Verify.verifyOrdinaryUser,
+	Verify.verifyAdmin,
 
 	function (req, res, next) {
 		Promotions.findByIdAndUpdate(
@@ -82,7 +82,7 @@ promoRouter.route('/:promoId')
 		);
 	}
 ).delete(
-	Verify.verifyOrdinaryUser,
+	Verify.verifyAdmin,
 
 	function (req, res, next) {
 		Promotions.findByIdAndRemove(
