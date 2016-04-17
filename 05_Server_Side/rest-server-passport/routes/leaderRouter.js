@@ -11,9 +11,10 @@ var leaderRouter = express.Router();
 leaderRouter.use(bodyParser.json());
 
 leaderRouter.route('/')
+
+.all(Verify.verifyOrdinaryUser)
+
 .get(
-	Verify.verifyOrdinaryUser,
-	
 	function (req, res, next) {
 		Leaders.find(
 			{},
@@ -24,7 +25,6 @@ leaderRouter.route('/')
 		);
 	}
 ).post(
-	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 	
 	function (req, res, next) {
@@ -42,7 +42,6 @@ leaderRouter.route('/')
 		);
 	}
 ).delete(
-	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 	
 	function (req, res, next) {
@@ -57,9 +56,10 @@ leaderRouter.route('/')
 );
 
 leaderRouter.route('/:leaderId')
-.get(
-	Verify.verifyOrdinaryUser,
-	
+
+.all(Verify.verifyOrdinaryUser)
+
+.get(	
 	function (req, res, next) {
 		Leaders.findById(
 			req.params.leaderId,
@@ -70,7 +70,6 @@ leaderRouter.route('/:leaderId')
 		);
 	}
 ).put(
-	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 	
 	function (req, res, next) {
@@ -85,7 +84,6 @@ leaderRouter.route('/:leaderId')
 		);
 	}
 ).delete(
-	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 	
 	function (req, res, next) {

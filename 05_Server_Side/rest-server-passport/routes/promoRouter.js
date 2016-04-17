@@ -11,9 +11,10 @@ var promoRouter = express.Router();
 promoRouter.use(bodyParser.json());
 
 promoRouter.route('/')
-.get(
-	Verify.verifyOrdinaryUser,
 
+.all(Verify.verifyOrdinaryUser)
+
+.get(
 	function (req, res, next) {
 		Promotions.find(
 			{},
@@ -24,7 +25,6 @@ promoRouter.route('/')
 		);
 	}
 ).post(
-	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 
 	function (req, res, next) {
@@ -42,7 +42,6 @@ promoRouter.route('/')
 		);
 	}
 ).delete(
-	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 
 	function (req, res, next) {
@@ -57,9 +56,10 @@ promoRouter.route('/')
 );
 
 promoRouter.route('/:promoId')
-.get(
-	Verify.verifyOrdinaryUser,
 
+.all(Verify.verifyOrdinaryUser)
+
+.get(
 	function (req, res, next) {
 		Promotions.findById(
 			req.params.promoId,
@@ -70,7 +70,6 @@ promoRouter.route('/:promoId')
 		);
 	}
 ).put(
-	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 
 	function (req, res, next) {
@@ -85,7 +84,6 @@ promoRouter.route('/:promoId')
 		);
 	}
 ).delete(
-	Verify.verifyOrdinaryUser,
 	Verify.verifyAdmin,
 
 	function (req, res, next) {

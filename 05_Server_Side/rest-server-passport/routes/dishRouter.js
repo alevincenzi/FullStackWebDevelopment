@@ -112,8 +112,6 @@ dishRouter.route('/:dishId/comments')
 				});
 	}
 ).post(
-	Verify.verifyAdmin,
-	
 	function (req, res, next) {
 		Dishes.findById(
 			req.params.dishId,
@@ -133,9 +131,7 @@ dishRouter.route('/:dishId/comments')
 			}
 		);
 	}
-).delete(
-	Verify.verifyAdmin,
-	
+).delete(	
 	function (req, res, next) {
 		Dishes.findById(
 			req.params.dishId,
