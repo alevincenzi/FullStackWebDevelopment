@@ -31,5 +31,9 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "dishes": {
+    "dataSource": "db",
+    "public": true
   }
 }
