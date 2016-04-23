@@ -15,8 +15,24 @@ favoriteRouter.route('/')
 .all(Verify.verifyOrdinaryUser)
 
 .get(
+	function (req, res, next) {
+		Favorites
+            .findOne({ "postedBy" : req.decoded._doc._id })
+			.populate('postedBy')
+			.populate('dishes')
+			.exec(
+				function (err, favorite) {
+					if (err) throw err;
+					res.json(favorite);
+				}
+            );
+	}
 ).post(
+	function (req, res, next) {
+    }
 ).delete(
+	function (req, res, next) {
+    }
 );
 
 favoriteRouter.route('/:dishObjectId')
@@ -24,6 +40,8 @@ favoriteRouter.route('/:dishObjectId')
 .all(Verify.verifyOrdinaryUser)
 
 delete(
+	function (req, res, next) {
+    }
 );
 
 module.exports = favoriteRouter;
