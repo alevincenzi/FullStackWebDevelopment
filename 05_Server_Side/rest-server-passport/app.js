@@ -8,12 +8,13 @@ var mongoose      = require('mongoose');
 var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var config       = require('./config');
-var routes       = require('./routes/index');
-var users        = require('./routes/users');
-var dishRouter   = require('./routes/dishRouter');
-var promoRouter  = require('./routes/promoRouter');
-var leaderRouter = require('./routes/leaderRouter');
+var config         = require('./config');
+var routes         = require('./routes/index');
+var users          = require('./routes/users');
+var dishRouter     = require('./routes/dishRouter');
+var promoRouter    = require('./routes/promoRouter');
+var leaderRouter   = require('./routes/leaderRouter');
+var favoriteRouter = require('./routes/favoriteRouter');
 
 mongoose.connect(config.mongoUrl);
 
@@ -77,6 +78,7 @@ app.use('/users',      users);
 app.use('/dishes',     dishRouter);
 app.use('/promotions', promoRouter);
 app.use('/leaders',    leaderRouter);
+app.use('/favorites',  favoriteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
