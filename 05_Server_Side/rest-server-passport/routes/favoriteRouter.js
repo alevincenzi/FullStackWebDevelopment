@@ -32,8 +32,14 @@ favoriteRouter.route('/')
     }
 ).delete(
 	function (req, res, next) {
-    }
-);
+		Favorites
+            .remove({ "postedBy" : req.decoded._doc._id },
+			function (err, resp) {
+				if (err) throw err;
+				res.json(resp);
+			}
+		);
+	});
 
 favoriteRouter.route('/:dishObjectId')
 
