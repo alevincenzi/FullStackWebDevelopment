@@ -29,6 +29,31 @@ favoriteRouter.route('/')
 	}
 ).post(
 	function (req, res, next) {
+        Favorites.findOne(
+            { "postedBy" : req.decoded._doc._id },
+            
+            function (err, favorite) {
+                if (err) throw err;
+                
+                if (favorite) {
+                    if (favorite.dishes.indexOf(req.body._id) == -1){
+                        favorite.dishes.push(req.body._id);
+                    }
+                }
+                else {
+                    favorite = new Favorites(
+                        { "postedBy" : req.decoded._doc._id});
+                    favorite.dishes.push(req.body._id);
+                }
+                        
+                favorite.save(
+                    function (err, favorite) {
+                        if (err) throw err;
+                        res.json(favorite);
+                    }
+                );
+            }
+        );
     }
 ).delete(
 	function (req, res, next) {
@@ -39,7 +64,8 @@ favoriteRouter.route('/')
 				res.json(resp);
 			}
 		);
-	});
+	}
+);
 
 favoriteRouter.route('/:dishObjectId')
 
