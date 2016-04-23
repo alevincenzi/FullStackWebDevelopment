@@ -71,8 +71,38 @@ favoriteRouter.route('/:dishObjectId')
 
 .all(Verify.verifyOrdinaryUser)
 
-delete(
+.delete(
 	function (req, res, next) {
+        Favorites.findOne(
+            { "postedBy" : req.decoded._doc._id },
+            
+            function (err, favorite) {
+                if (err) throw err;
+                
+                if (favorite){
+                    
+                    var pos = favorite.dishes.indexOf(req.params.dishObjectId);
+                    console.log(pos);
+                    if (pos != -1){
+                        
+                        favorite.dishes.splice(pos, 1);
+                
+                        favorite.save(
+                            function (err, favorite) {
+                                if (err) throw err;
+                            }
+                        );
+                    }
+                    
+                    res.json(favorite);                    
+                } else {
+                    var err = new Error(
+						'Favorites not found!');
+					err.status = 404;
+					return next(err);
+                }
+            }
+        );
     }
 );
 
