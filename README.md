@@ -17,6 +17,9 @@
 
 ### [Front-End JavaScript Frameworks: AngularJS](https://www.coursera.org/learn/angular-js "Go to class")
 
+* Angular Basics
+* Controllers
+
 ### [Multiplatform Mobile App Development with Web Technologies](https://www.coursera.org/learn/hybrid-mobile-development "Go to class")
 
 ### [Server-side Development with NodeJS](https://www.coursera.org/learn/server-side-development "Go to class")
@@ -25,5 +28,14 @@
 * Callbacks and Error Handling
 * Http, Express (generator), Morgan, Router
 * MongoDB, Mongoose
+* Rest Services
+* Authentication
+** Basic Auth
+** signed cookies
+** express-session
+** Passport
+* Mongoose Population
+* HTTPS/OAuth
+* LoopBack
 
 ### [Capstone Project](https://www.coursera.org/learn/capstone-project "Go to class")
