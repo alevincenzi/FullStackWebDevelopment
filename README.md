@@ -30,10 +30,10 @@
 * MongoDB, Mongoose
 * Rest Services
 * Authentication
-** Basic Auth
-** signed cookies
-** express-session
-** Passport
+  * Basic Auth
+  * signed cookies
+  * express-session
+  * Passport
 * Mongoose Population
 * HTTPS/OAuth
 * LoopBack
