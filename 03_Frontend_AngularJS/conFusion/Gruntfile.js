@@ -10,6 +10,8 @@ module.exports = function (grunt) {
         useminPrepare: 'grunt-usemin'
     });
 
+    grunt.loadNpmTasks('grunt-ng-annotate');
+    
     // Define the configuration for all the tasks
     grunt.initConfig({
 
@@ -172,12 +174,26 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        
+        ngAnnotate: {
+            options: {
+                remove: true,
+                add: true,
+                singleQuotes: true
+            },
+            app: {
+                files: {
+                    'scripts/app.js': 'scripts/app.js'
+                }
+            }
         }
     });
 
     grunt.registerTask('build', [
         'clean',
         'jshint',
+        'ngAnnotate',
         'useminPrepare',
         'concat',
         'cssmin',

@@ -1,1 +1,2 @@
 bower install
+grunt serve
