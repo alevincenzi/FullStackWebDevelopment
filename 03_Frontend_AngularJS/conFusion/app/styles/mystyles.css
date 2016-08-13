@@ -8,6 +8,11 @@
   border-bottom: 1px ridge;
   min-height: 400px;
 }
+.row-content-last {
+  margin: 0px auto;
+  padding: 50px 0px;
+  min-height: 400px;
+}
 .row-footer {
   margin: 0px auto;
   padding: 20px 0px;

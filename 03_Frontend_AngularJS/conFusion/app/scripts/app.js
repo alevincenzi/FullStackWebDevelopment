@@ -6,8 +6,9 @@ angular
 
     $scope.tab = 1;
     $scope.filtText = '';
-
-    $scope.select = function(setTab) {
+    $scope.showDetails = false;
+    
+    $scope.selectTab = function(setTab) {
         $scope.tab = setTab;  
 
         if (setTab === 2){
@@ -21,6 +22,10 @@ angular
         }
     };
 
+    $scope.toggleDetails = function() {
+        $scope.showDetails = !$scope.showDetails;
+    };
+    
     $scope.isSelected = function (checkTab) {
         return ($scope.tab === checkTab);
     };

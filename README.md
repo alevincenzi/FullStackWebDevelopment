@@ -18,7 +18,7 @@
 ### [Front-End JavaScript Frameworks: AngularJS](https://www.coursera.org/learn/angular-js "Go to class")
 
 * Angular Basics
-* Controllers
+* Controllers, Scope
 * Angular filters
 * Grunt & Gulp
 

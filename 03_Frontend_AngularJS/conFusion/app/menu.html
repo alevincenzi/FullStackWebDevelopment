@@ -30,23 +30,26 @@
 <body>
 
     <div class="container">
-        <div class="row row-content" ng-controller="MenuController">
+        <div class="row row-content-last" ng-controller="MenuController">
             <div class="col-xs-12">
+                <button ng-click="toggleDetails()" class="btn btn-xs btn-primary pull-right" type="button">
+                  {{showDetails ? 'Hide Details' : 'Show Details'}}
+                </button>  
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" ng-class="{active:isSelected(1)}">
-                    <a ng-click="select(1)"
+                    <a ng-click="selectTab(1)"
                      aria-controls="all menu"
                      role="tab">The Menu</a></li>
                     <li role="presentation" ng-class="{active:isSelected(2)}">
-                    <a ng-click="select(2)"
+                    <a ng-click="selectTab(2)"
                      aria-controls="appetizers"
                      role="tab">Appetizers</a></li>
                     <li role="presentation" ng-class="{active:isSelected(3)}">
-                    <a ng-click="select(3)"
+                    <a ng-click="selectTab(3)"
                      aria-controls="mains"
                      role="tab">Mains</a></li>
                     <li role="presentation" ng-class="{active:isSelected(4)}">
-                    <a ng-click="select(4)"
+                    <a ng-click="selectTab(4)"
                      aria-controls="desserts"
                      role="tab">Desserts</a></li>
                 </ul>
@@ -63,7 +66,7 @@
                             <h2 class="media-heading">{{dish.name}}
                             <span class="label label-danger">{{dish.label}}</span>
                             <span class="badge">{{dish.price | currency}}</span></h2>
-                            <p>{{dish.description}}</p>
+                            <p ng-show="showDetails">{{dish.description}}</p>
                         </div>
                     </li>
                     </ul>
