@@ -5,7 +5,7 @@
 * ~~Models, Views and Controllers~~
 * ~~Angular Filters~~
 * ~~Assignment 1~~
-* Web Tools: Grunt and Gulp
+* ~~Web Tools: Grunt and Gulp~~
 * Angular Scope
 * Angular Forms and Form Validation
 * Assignment 2
