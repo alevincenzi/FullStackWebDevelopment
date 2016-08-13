@@ -162,4 +162,20 @@ angular
             console.log($scope.feedback);
         }
     };
-}]);
+}])
+.controller('DishCommentController', ['$scope', function($scope) {
+	
+	$scope.newcomment = { author:"", rating:5, comment:"", date:"" };	
+	
+	$scope.SubmitComment = function () {
+		
+		$scope.newcomment.date = new Date().toISOString();
+		
+		$scope.dish.comments.push($scope.newcomment);
+		
+		$scope.CommentForm.$setPristine();
+		
+		$scope.newcomment = { author:"", rating:5, comment:"", date:"" };
+	};
+}])
+;
