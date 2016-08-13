@@ -4,7 +4,7 @@
 * ~~Introduction to AngularJS~~
 * ~~Models, Views and Controllers~~
 * ~~Angular Filters~~
-* Assignment 1
+* ~~Assignment 1~~
 * Web Tools: Grunt and Gulp
 * Angular Scope
 * Angular Forms and Form Validation
@@ -21,7 +21,7 @@
 * Web Tools: Yo and Yeoman
 * Assignment 4
 
-Multiplatform Mobile
+### Multiplatform Mobile
 
 * The Big Picture
 * Hybrid Mobile App Development: An Overview

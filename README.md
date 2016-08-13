@@ -19,6 +19,7 @@
 
 * Angular Basics
 * Controllers
+* Angular filters
 
 ### [Multiplatform Mobile App Development with Web Technologies](https://www.coursera.org/learn/hybrid-mobile-development "Go to class")
 
