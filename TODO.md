@@ -7,7 +7,7 @@
 * ~~Assignment 1~~
 * ~~Web Tools: Grunt and Gulp~~
 * ~~Angular Scope~~
-* Angular Forms and Form Validation
+* ~~Angular Forms and Form Validation~~
 * Assignment 2
 * Angular Factory, Service and Dependency Injection
 * Angular Templates

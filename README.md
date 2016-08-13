@@ -17,9 +17,10 @@
 
 ### [Front-End JavaScript Frameworks: AngularJS](https://www.coursera.org/learn/angular-js "Go to class")
 
-* Angular Basics
+* Angular Basics (two way binding, filters, ...)
 * Controllers, Scope
 * Angular filters
+* Forms and Form Validation
 * Grunt & Gulp
 
 ### [Multiplatform Mobile App Development with Web Technologies](https://www.coursera.org/learn/hybrid-mobile-development "Go to class")
