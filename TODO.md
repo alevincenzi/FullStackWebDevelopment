@@ -9,7 +9,7 @@
 * ~~Angular Scope~~
 * ~~Angular Forms and Form Validation~~
 * ~~Assignment 2~~
-* Angular Factory, Service and Dependency Injection
+* ~~Angular Factory, Service and Dependency Injection~~
 * Angular Templates
 * Angular ngRoute and Single Page Applications
 * Angular UI-Router for Single Page Applications

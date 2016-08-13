@@ -21,6 +21,7 @@
 * Controllers, Scope
 * Angular filters
 * Forms and Form Validation
+* Dependency Injection
 * Grunt & Gulp
 
 ### [Multiplatform Mobile App Development with Web Technologies](https://www.coursera.org/learn/hybrid-mobile-development "Go to class")
