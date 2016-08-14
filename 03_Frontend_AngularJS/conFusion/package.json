@@ -14,7 +14,6 @@
     "grunt-filerev": "^2.3.1",
     "grunt-ng-annotate": "^2.0.2",
     "grunt-usemin": "^3.1.1",
-    "gulp-ng-annotate": "^2.0.0",
     "jit-grunt": "^0.10.0",
     "jshint-stylish": "^2.2.1",
     "time-grunt": "^1.4.0"

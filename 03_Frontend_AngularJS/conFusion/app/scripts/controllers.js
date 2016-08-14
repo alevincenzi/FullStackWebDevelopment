@@ -32,9 +32,9 @@ angular
         return ($scope.tab === checkTab);
     };
 }])
-.controller('DishDetailController', ['$scope', '$routeParams', 'menuFactory', function($scope, $routeParams, menuFactory) {
+.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
 
-    $scope.dish = menuFactory.getDish(parseInt($routeParams.id, 10));
+    $scope.dish = menuFactory.getDish(parseInt($stateParams.id, 10));
     
     $scope.starLabelText = function (starCount) {
         if (starCount === 1){

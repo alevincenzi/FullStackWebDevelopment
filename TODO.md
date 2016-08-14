@@ -12,7 +12,7 @@
 * ~~Angular Factory, Service and Dependency Injection~~
 * ~~Angular Templates~~
 * ~~Angular ngRoute and Single Page Applications~~
-* Angular UI-Router for Single Page Applications
+* ~~Angular UI-Router for Single Page Applications~~
 * Assignment 3
 * Client-Server Communication
 * Angular $http Service

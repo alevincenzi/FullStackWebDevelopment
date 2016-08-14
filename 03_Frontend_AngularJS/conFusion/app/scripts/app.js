@@ -2,25 +2,67 @@
 
 angular
 
-.module('confusionApp', ['ngRoute'])
+.module('confusionApp', ['ui.router'])
 
-.config(function($routeProvider) {
+.config(function($stateProvider, $urlRouterProvider) {
 
-    $routeProvider
-    // route for the contactus page
-    .when('/contactus', {
-        templateUrl : 'contactus.html',
-        controller  : 'ContactController'
+    $stateProvider
+
+    .state('app', {
+        url:'/',
+        views: {
+            'header': {
+                templateUrl : 'views/header.html'
+            },
+            'content': {
+                templateUrl : 'views/home.html',
+                controller  : 'IndexController'
+            },
+            'footer': {
+                templateUrl : 'views/footer.html'
+            }
+        }
     })
-    // route for the menu page
-    .when('/menu', {
-        templateUrl : 'menu.html',
-        controller  : 'MenuController'
+
+    .state('app.aboutus', {
+        url:'aboutus',
+        views: {
+            'content@': {
+                templateUrl : 'views/aboutus.html'               
+            }
+        }
     })
-    // route for the dish details page
-    .when('/menu/:id', {
-        templateUrl : 'dishdetail.html',
-        controller  : 'DishDetailController'
+
+    .state('app.contactus', {
+        url:'contactus',
+        views: {
+            'content@': {
+                templateUrl : 'views/contactus.html',
+                controller  : 'ContactController'
+             }
+        }
     })
-    .otherwise('/contactus');
-});
+
+    .state('app.menu', {
+        url: 'menu',
+        views: {
+            'content@': {
+                templateUrl : 'views/menu.html',
+                controller  : 'MenuController'
+            }
+        }
+    })
+
+    .state('app.dishdetails', {
+        url: 'menu/:id',
+        views: {
+            'content@': {
+                templateUrl : 'views/dishdetail.html',
+                controller  : 'DishDetailController'
+           }
+        }
+    });
+
+    $urlRouterProvider.otherwise('/');
+})
+;
