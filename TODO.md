@@ -10,8 +10,8 @@
 * ~~Angular Forms and Form Validation~~
 * ~~Assignment 2~~
 * ~~Angular Factory, Service and Dependency Injection~~
-* Angular Templates
-* Angular ngRoute and Single Page Applications
+* ~~Angular Templates~~
+* ~~Angular ngRoute and Single Page Applications~~
 * Angular UI-Router for Single Page Applications
 * Assignment 3
 * Client-Server Communication
