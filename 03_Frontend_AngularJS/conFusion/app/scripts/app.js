@@ -28,7 +28,8 @@ angular
         url:'aboutus',
         views: {
             'content@': {
-                templateUrl : 'views/aboutus.html'               
+                templateUrl : 'views/aboutus.html',
+                controller  : 'AboutController'              
             }
         }
     })

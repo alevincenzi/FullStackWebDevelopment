@@ -97,4 +97,16 @@ angular
 		$scope.newcomment = { author:"", rating:5, comment:"", date:"" };
 	};
 }])
+.controller('IndexController',['$scope', 'corporateFactory', 'menuFactory', function($scope, corporateFactory, menuFactory){
+
+    $scope.dish = menuFactory.getDish(0);
+
+    $scope.leader = corporateFactory.getLeader(3);
+
+    $scope.promotion = menuFactory.getPromotion(0);
+}])
+.controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
+    
+    $scope.leaders = corporateFactory.getLeaders();
+}])
 ;
