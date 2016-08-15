@@ -10,11 +10,11 @@ angular
 
     $scope.showMenu = false;
     $scope.message  = "Loading ...";
-    $scope.dishes   = [];
-    
-    menuFactory.getDishes().then(
+
+    $scope.dishes = menuFactory.getDishes().query(
+
         function(response) {
-            $scope.dishes = response.data;
+            $scope.dishes = response;
             $scope.showMenu = true;
         },
         function(response) {
@@ -22,7 +22,7 @@ angular
                 "Error: " + response.status + " " + response.statusText;
         }
     );
-            
+    
     $scope.selectTab = function(setTab) {
         $scope.tab = setTab;  
 
@@ -47,21 +47,21 @@ angular
 }])
 .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
 
-    $scope.dish     = {};
     $scope.showDish = false;
     $scope.message  = "Loading ...";
-
-    menuFactory.getDish(parseInt($stateParams.id,10)).then(
-            function(response){
-                $scope.dish = response.data;
-                $scope.showDish=true;
-            },
-            function(response) {
-                $scope.message = 
-                    "Error: " + response.status + " " + response.statusText;
-            }
-        );
     
+    $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id,10)}).$promise.then(
+    
+        function(response){
+            $scope.dish = response;
+            $scope.showDish = true;
+        },
+        function(response) {
+            $scope.message =
+                "Error: " + response.status + " " + response.statusText;
+        }
+    );
+
     $scope.starLabelText = function (starCount) {
         if (starCount === 1){
             return "Star";
@@ -108,7 +108,7 @@ angular
         }
     };
 }])
-.controller('DishCommentController', ['$scope', function($scope) {
+.controller('DishCommentController', ['$scope', 'menuFactory', function($scope, menuFactory) {
 	
 	$scope.newcomment = { author:"", rating:5, comment:"", date:"" };	
 	
@@ -118,6 +118,8 @@ angular
 		
 		$scope.dish.comments.push($scope.newcomment);
 		
+        menuFactory.getDishes().update({id:$scope.dish.id}, $scope.dish);
+        
 		$scope.CommentForm.$setPristine();
 		
 		$scope.newcomment = { author:"", rating:5, comment:"", date:"" };
@@ -125,18 +127,17 @@ angular
 }])
 .controller('IndexController',['$scope', 'corporateFactory', 'menuFactory', function($scope, corporateFactory, menuFactory){
 
-    $scope.dish     = {};
     $scope.showDish = false;
     $scope.message  = "Loading ...";
+    
+    $scope.dish = menuFactory.getDishes().get({id:0}).$promise.then(
 
-    menuFactory.getDish(0).then(
         function(response){
-            $scope.dish = response.data;
+            $scope.dish = response;
             $scope.showDish = true;
         },
         function(response) {
-            $scope.message =
-                "Error: " + response.status + " " + response.statusText;
+            $scope.message = "Error: "+response.status + " " + response.statusText;
         }
     );
 

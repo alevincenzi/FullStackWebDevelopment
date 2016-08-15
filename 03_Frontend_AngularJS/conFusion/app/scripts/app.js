@@ -2,7 +2,7 @@
 
 angular
 
-.module('confusionApp', ['ui.router'])
+.module('confusionApp', ['ui.router', 'ngResource'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 

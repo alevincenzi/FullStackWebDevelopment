@@ -16,7 +16,7 @@
 * ~~Assignment 3~~
 * ~~Client-Server Communication~~
 * ~~Angular $http Service~~
-* RESTful Services and Angular $resource
+* ~~RESTful Services and Angular $resource~~
 * Angular Testing
 * Web Tools: Yo and Yeoman
 * Assignment 4
