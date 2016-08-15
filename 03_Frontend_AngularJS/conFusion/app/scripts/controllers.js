@@ -8,8 +8,21 @@ angular
     $scope.filtText = '';
     $scope.showDetails = false;
 
-    $scope.dishes =  menuFactory.getDishes();
+    $scope.showMenu = false;
+    $scope.message  = "Loading ...";
+    $scope.dishes   = [];
     
+    menuFactory.getDishes().then(
+        function(response) {
+            $scope.dishes = response.data;
+            $scope.showMenu = true;
+        },
+        function(response) {
+            $scope.message =
+                "Error: " + response.status + " " + response.statusText;
+        }
+    );
+            
     $scope.selectTab = function(setTab) {
         $scope.tab = setTab;  
 
@@ -34,7 +47,20 @@ angular
 }])
 .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
 
-    $scope.dish = menuFactory.getDish(parseInt($stateParams.id, 10));
+    $scope.dish     = {};
+    $scope.showDish = false;
+    $scope.message  = "Loading ...";
+
+    menuFactory.getDish(parseInt($stateParams.id,10)).then(
+            function(response){
+                $scope.dish = response.data;
+                $scope.showDish=true;
+            },
+            function(response) {
+                $scope.message = 
+                    "Error: " + response.status + " " + response.statusText;
+            }
+        );
     
     $scope.starLabelText = function (starCount) {
         if (starCount === 1){
@@ -99,7 +125,20 @@ angular
 }])
 .controller('IndexController',['$scope', 'corporateFactory', 'menuFactory', function($scope, corporateFactory, menuFactory){
 
-    $scope.dish = menuFactory.getDish(0);
+    $scope.dish     = {};
+    $scope.showDish = false;
+    $scope.message  = "Loading ...";
+
+    menuFactory.getDish(0).then(
+        function(response){
+            $scope.dish = response.data;
+            $scope.showDish = true;
+        },
+        function(response) {
+            $scope.message =
+                "Error: " + response.status + " " + response.statusText;
+        }
+    );
 
     $scope.leader = corporateFactory.getLeader(3);
 

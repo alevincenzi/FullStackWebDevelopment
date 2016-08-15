@@ -15,7 +15,7 @@
 * ~~Angular UI-Router for Single Page Applications~~
 * ~~Assignment 3~~
 * ~~Client-Server Communication~~
-* Angular $http Service
+* ~~Angular $http Service~~
 * RESTful Services and Angular $resource
 * Angular Testing
 * Web Tools: Yo and Yeoman
