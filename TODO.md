@@ -14,7 +14,7 @@
 * ~~Angular ngRoute and Single Page Applications~~
 * ~~Angular UI-Router for Single Page Applications~~
 * ~~Assignment 3~~
-* Client-Server Communication
+* ~~Client-Server Communication~~
 * Angular $http Service
 * RESTful Services and Angular $resource
 * Angular Testing
