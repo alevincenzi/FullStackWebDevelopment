@@ -19,7 +19,7 @@
 * ~~RESTful Services and Angular $resource~~
 * Angular Testing
 * Web Tools: Yo and Yeoman
-* Assignment 4
+* ~~Assignment 4~~
 
 ### Multiplatform Mobile
 
