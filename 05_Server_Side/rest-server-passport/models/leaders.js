@@ -21,6 +21,10 @@ var leaderSchema = new Schema(
 			required: false,
 			default:  ""
 		},
+        featured: {
+            type:     Boolean,
+            default:  false
+        },
 		description: {
 			type:     String,
 			required: true

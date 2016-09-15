@@ -68,7 +68,7 @@ router.route('/login')
 				}
 				if (!user) {
 					return res.status(401).json(
-					{err: info});
+                    {err: info});
 				}
 				
 				req.logIn(user,
@@ -78,7 +78,10 @@ router.route('/login')
 							{ err: 'Could not log in user'});
 						}
         
-						var token = Verify.getToken(user);
+						var token = Verify.getToken(
+                            {"username" : user.username,
+                             "_id"      : user._id,
+                             "admin"    : user.admin});
 						
 						res.status(200).json(
 						{ status : 'Login successful!',

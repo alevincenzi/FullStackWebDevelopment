@@ -48,12 +48,16 @@ var dishSchema = new Schema(
 			type:     Currency,
 			required: true
 		},
+        featured: {
+            type:     Boolean,
+            default:  false
+        },
 		description: {
 			type:     String,
 			required: true
 		},
 		comments: [commentSchema]
-	},
+  	},
 	{ timestamps: true }
 );
 

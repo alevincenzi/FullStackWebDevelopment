@@ -44,7 +44,7 @@ exports.verifyOrdinaryUser = function (req, res, next) {
 
 exports.verifyAdmin = function (req, res, next) {
 	
-	if (req.decoded._doc.admin){
+	if (req.decoded.admin){
 	
 		return next();
 	
