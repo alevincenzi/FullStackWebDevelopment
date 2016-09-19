@@ -44,4 +44,4 @@
 * HTTPS/OAuth
 * LoopBack
 
-### [Capstone Project](https://www.coursera.org/learn/capstone-project "Go to class")
+### [Capstone Project](https://www.coursera.org/learn/web-development-project "Go to class")
