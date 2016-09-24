@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="confusionApp">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +7,11 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head 
          content must come *after* these tags -->
     
-    <title>Ristorante Con Fusion</title>    
-        <!-- Bootstrap -->
+    <title>JoinMe</title>
+
+    <link rel="icon" href="images/joinme-icon.png">    
+
+<!-- Bootstrap -->
 <!-- build:css styles/main.css -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
@@ -17,7 +19,6 @@
     <link href="../bower_components/ng-dialog/css/ngDialog.min.css" rel="stylesheet">
     <link href="../bower_components/ng-dialog/css/ngDialog-theme-plain.min.css" rel="stylesheet">
     <link href="../bower_components/ng-dialog/css/ngDialog-theme-default.min.css" rel="stylesheet">
-    <link href="styles/bootstrap-social.css" rel="stylesheet">
     <link href="styles/mystyles.css" rel="stylesheet">
 <!-- endbuild -->
 
@@ -28,15 +29,10 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
-    
     <div ui-view="header"></div>
-
     <div ui-view="content"></div>
-    
     <div ui-view="footer"></div>
-
 
 <!-- build:js scripts/main.js -->
     <script src="../bower_components/angular/angular.min.js"></script>
@@ -49,5 +45,4 @@
 <!-- endbuild -->
 
 </body>
-
 </html>

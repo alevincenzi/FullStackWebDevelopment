@@ -15,70 +15,56 @@
 }
 .jumbotron {
   margin: 0px auto;
-  padding: 70px 30px;
-  background: #7986CB;
+  padding: 40px 30px;
+  background: #3c9933;
   color: floralwhite;
 }
-.carousel {
-  background: #1a237e;
+.navbar-brand {
+  padding: 0px;
 }
-.carousel .item {
-  height: 300px;
-}
-.carousel .item img {
-  left: 0;
-  min-height: 300px;
-  position: absolute;
-  top: 0;
+.navbar-brand>img {
+  height: 100%;
+  padding: 5px;
+  width: auto;
 }
 .navbar-inverse {
-  background: #303f9f;
+  background: #256020;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .active > a {
-  background: #1a237e;
+  background: #113f0d;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .active > a:hover {
-  background: #1a237e;
+  background: #113f0d;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .active > a:focus {
-  background: #1a237e;
+  background: #113f0d;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .open > a {
-  background: #1a237e;
+  background: #113f0d;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .open > a:hover {
-  background: #1a237e;
+  background: #113f0d;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .open > a:focus {
-  background: #1a237e;
+  background: #113f0d;
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-  background-color: #303f9f;
+  background-color: #256020;
   color: #eeeeee;
 }
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
   color: #000000;
 }
 .navbar-inverse .navbar-nav .open .dropdown-menu {
-  background-color: #303f9f;
+  background-color: #256020;
   color: #eeeeee;
-}
-address {
-  color: #0f0f0f;
-  font-size: 80%;
-  margin: 0px;
-}
-body {
-  align: center;
-  padding: 50px 0px 0px 0px;
-  z-index: 0;
 }
 .tab-content {
   border-bottom: 1px solid #dddddd;
@@ -89,8 +75,29 @@ body {
 .affix {
   top: 100px;
 }
-#carouselButtons {
-  bottom: 0px;
+address {
+  color: #0f0f0f;
+  font-size: 80%;
+  margin: 0px;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  align: center;
+  padding: 50px 0px 0px 0px;
+  z-index: 0;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  padding: 20px;
   position: absolute;
-  right: 0px;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background: #3c9933;
+  color: #ffffff;
 }
