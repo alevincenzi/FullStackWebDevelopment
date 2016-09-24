@@ -26,7 +26,7 @@ Server = (function()
   Server.prototype.start = function() {
     var app;
     app = express();
-    app.use(express["static"]("views"));
+    app.use(express["static"]("dist"));
     app.use(express.json());
 
 

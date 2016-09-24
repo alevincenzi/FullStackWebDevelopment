@@ -1,4 +1,7 @@
 node_modules/
+bower_components/
+bower.json
+gulpfile.json
 *.DS_Store
 README.md
 .github/
@@ -6,3 +9,4 @@ README.md
 .gitignore
 logs
 *.log
+app/
