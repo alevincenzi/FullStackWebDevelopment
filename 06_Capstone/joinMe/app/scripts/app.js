@@ -34,13 +34,13 @@ angular.module('confusionApp', ['ui.router','ngResource','ngDialog'])
                 }
             })
         
-            // route for the contactus page
-            .state('app.contactus', {
-                url:'contactus',
+            // route for the new event page
+            .state('app.newevent', {
+                url:'newevent',
                 views: {
                     'content@': {
-                        templateUrl : 'views/contactus.html',
-                        controller  : 'ContactController'                  
+                        templateUrl : 'views/newevent.html',
+                        controller  : 'NewEventController'                  
                     }
                 }
             })

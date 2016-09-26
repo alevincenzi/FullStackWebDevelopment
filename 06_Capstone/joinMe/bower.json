@@ -4,7 +4,7 @@
   "description": "Website for an awesome restaurant",
   "main": "index.html",
   "moduleType": [],
-  "keywords": [ ],
+  "keywords": [],
   "authors": [
     "Alessandro Vincenzi"
   ],
@@ -25,7 +25,8 @@
     "angular-route": "~1.5.5",
     "bootstrap": "~3.3.6",
     "font-awesome": "fontawesome#~4.6.1",
-    "ng-dialog": "~0.6.0"
+    "ng-dialog": "~0.6.0",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.42"
   },
   "overrides": {
     "bootstrap": {

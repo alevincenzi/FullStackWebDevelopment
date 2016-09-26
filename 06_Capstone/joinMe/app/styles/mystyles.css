@@ -8,6 +8,11 @@
   border-bottom: 1px ridge;
   min-height: 400px;
 }
+.row-content-last {
+  margin: 0px auto;
+  padding: 50px 0px;
+  min-height: 400px;
+}
 .row-footer {
   margin: 0px auto;
   padding: 20px 0px;
@@ -54,17 +59,6 @@
 .navbar-inverse .navbar-nav > .open > a:focus {
   background: #113f0d;
   color: #ffffff;
-}
-.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-  background-color: #256020;
-  color: #eeeeee;
-}
-.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
-  color: #000000;
-}
-.navbar-inverse .navbar-nav .open .dropdown-menu {
-  background-color: #256020;
-  color: #eeeeee;
 }
 .tab-content {
   border-bottom: 1px solid #dddddd;

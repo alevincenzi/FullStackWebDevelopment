@@ -54,47 +54,35 @@ angular.module('confusionApp')
     };
 }])
 
-.controller('ContactController', ['$scope', 'feedbackFactory', function ($scope, feedbackFactory) {
+.controller('NewEventController',
+    
+    ['$scope', 'feedbackFactory', function ($scope, feedbackFactory) {
 
-    $scope.feedback = {
-        mychannel: "",
-        firstName: "",
-        lastName: "",
-        agree: false,
-        email: ""
-    };
+        $scope.newEvent = {
+            title: "",
+            description: "",
+            place : "",
+            dateAndTime: "",
+            tags:""
+        };
 
-    var channels = [{
-        value: "tel",
-        label: "Tel."
-    }, {
-        value: "Email",
-        label: "Email"
-    }];
+        $scope.createNewEvent = function () {
 
-    $scope.channels = channels;
-    $scope.invalidChannelSelection = false;
+            console.log('Adding new event ' + $scope.newEvent.dateAndTime);
+            console.log('Adding new event ' + $scope.newEvent.tags);
 
-    $scope.sendFeedback = function () {
-
-
-        if ($scope.feedback.agree && ($scope.feedback.mychannel == "")) {
-            $scope.invalidChannelSelection = true;
-        } else {
-            $scope.invalidChannelSelection = false;
-            feedbackFactory.save($scope.feedback);
-            $scope.feedback = {
-                mychannel: "",
-                firstName: "",
-                lastName: "",
-                agree: false,
-                email: ""
+            feedbackFactory.save($scope.newEvent);
+            $scope.newEvent = {
+                title: "",
+                description: "",
+                place : "",
+                dateAndTime: "",
+                tags:""
             };
-            $scope.feedback.mychannel = "";
-            $scope.feedbackForm.$setPristine();
-        }
-    };
-}])
+            $scope.newEventForm.$setPristine();
+        };
+    }]
+)
 
 .controller('DishDetailController', ['$scope', '$state', '$stateParams', 'menuFactory', 'commentFactory', function ($scope, $state, $stateParams, menuFactory, commentFactory) {
 
