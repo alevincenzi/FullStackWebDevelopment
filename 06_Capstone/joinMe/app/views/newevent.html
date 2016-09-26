@@ -38,17 +38,8 @@
                 <div class="form-group">
                     <label for="dateAndTime" class="col-sm-2 control-label">Date<br/>and Time</label>
                     <div class='col-sm-5'>
-                        <div class='input-group date' id='datetimepicker1'>
-                            <input type='text' class="form-control" id="dateAndTime" name="dateAndTime" ng-model="newEvent.dateAndTime">
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                        <script type="text/javascript">
-                            $(function () {
-                                $('#datetimepicker1').datetimepicker();
-                            });
-                        </script> 
+                        <input type="text" class="form-control" id="dateAndTime" name="dateAndTime" ng-model="newEvent.dateAndTime" required>
+                        <span ng-show="newEventForm.dateAndTime.$error.required && !newEventForm.dateAndTime.$pristine" class="help-block">The date and time is required.</span>
                    </div>
                 </div>
 

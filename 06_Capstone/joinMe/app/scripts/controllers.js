@@ -68,8 +68,7 @@ angular.module('confusionApp')
 
         $scope.createNewEvent = function () {
 
-            console.log('Adding new event ' + $scope.newEvent.dateAndTime);
-            console.log('Adding new event ' + $scope.newEvent.tags);
+            console.log('Adding new event ', $scope.newEvent);
 
             feedbackFactory.save($scope.newEvent);
             $scope.newEvent = {
