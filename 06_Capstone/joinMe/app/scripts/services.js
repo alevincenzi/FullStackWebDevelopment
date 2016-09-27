@@ -84,7 +84,7 @@ angular.module('confusionApp')
         getObject: function (key, defaultValue) {
             return JSON.parse($window.localStorage[key] || defaultValue);
         }
-    }
+    };
 }])
 
 .factory('AuthFactory', ['$resource', '$http', '$localStorage', '$rootScope', '$window', 'baseURL', 'ngDialog', function($resource, $http, $localStorage, $rootScope, $window, baseURL, ngDialog){
@@ -98,7 +98,7 @@ angular.module('confusionApp')
 
   function loadUserCredentials() {
     var credentials = $localStorage.getObject(TOKEN_KEY,'{}');
-    if (credentials.username != undefined) {
+    if (credentials.username !== undefined) {
       useCredentials(credentials);
     }
   }
@@ -143,7 +143,7 @@ angular.module('confusionApp')
                     response.data.err.name + '</p></div>' +
                 '<div class="ngdialog-buttons">\
                     <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>\
-                </div>'
+                </div>';
             
                 ngDialog.openConfirm({ template: message, plain: 'true'});
            }

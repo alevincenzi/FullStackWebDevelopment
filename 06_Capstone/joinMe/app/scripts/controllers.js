@@ -2,129 +2,50 @@
 
 angular.module('confusionApp')
 
-.controller('MenuController', ['$scope', 'menuFactory', 'favoriteFactory', function ($scope, menuFactory, favoriteFactory) {
-
-    $scope.tab = 1;
-    $scope.filtText = '';
-    $scope.showDetails = false;
-    $scope.showFavorites = false;
-    $scope.showMenu = false;
-    $scope.message = "Loading ...";
-
-    menuFactory.query(
-        function (response) {
-            $scope.dishes = response;
-            $scope.showMenu = true;
-
-        },
-        function (response) {
-            $scope.message = "Error: " + response.status + " " + response.statusText;
-        });
-
-    $scope.select = function (setTab) {
-        $scope.tab = setTab;
-
-        if (setTab === 2) {
-            $scope.filtText = "appetizer";
-        } else if (setTab === 3) {
-            $scope.filtText = "mains";
-        } else if (setTab === 4) {
-            $scope.filtText = "dessert";
-        } else {
-            $scope.filtText = "";
-        }
-    };
-
-    $scope.isSelected = function (checkTab) {
-        return ($scope.tab === checkTab);
-    };
-
-    $scope.toggleDetails = function () {
-        $scope.showDetails = !$scope.showDetails;
-    };
-
-    $scope.toggleFavorites = function () {
-        $scope.showFavorites = !$scope.showFavorites;
-    };
+.controller('HeaderController',
     
-    $scope.addToFavorites = function(dishid) {
-        console.log('Add to favorites', dishid);
-        favoriteFactory.save({_id: dishid});
-        $scope.showFavorites = !$scope.showFavorites;
-    };
-}])
+['$scope', '$state', '$rootScope', 'ngDialog', 'AuthFactory',
+function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
 
-.controller('NewEventController',
+    $scope.loggedIn = false;
+    $scope.username = '';
     
-    ['$scope', 'feedbackFactory', function ($scope, feedbackFactory) {
-
-        $scope.newEvent = {
-            title: "",
-            description: "",
-            place : "",
-            dateAndTime: "",
-            tags:""
-        };
-
-        $scope.createNewEvent = function () {
-
-            console.log('Adding new event ', $scope.newEvent);
-
-            feedbackFactory.save($scope.newEvent);
-            $scope.newEvent = {
-                title: "",
-                description: "",
-                place : "",
-                dateAndTime: "",
-                tags:""
-            };
-            $scope.newEventForm.$setPristine();
-        };
-    }]
-)
-
-.controller('DishDetailController', ['$scope', '$state', '$stateParams', 'menuFactory', 'commentFactory', function ($scope, $state, $stateParams, menuFactory, commentFactory) {
-
-    $scope.dish = {};
-    $scope.showDish = false;
-    $scope.message = "Loading ...";
-
-    $scope.dish = menuFactory.get({
-            id: $stateParams.id
-        })
-        .$promise.then(
-            function (response) {
-                $scope.dish = response;
-                $scope.showDish = true;
-            },
-            function (response) {
-                $scope.message = "Error: " + response.status + " " + response.statusText;
-            }
-        );
-
-    $scope.mycomment = {
-        rating: 5,
-        comment: ""
-    };
-
-    $scope.submitComment = function () {
-
-        commentFactory.save({id: $stateParams.id}, $scope.mycomment);
-
-        $state.go($state.current, {}, {reload: true});
-        
-        $scope.commentForm.$setPristine();
-
-        $scope.mycomment = {
-            rating: 5,
-            comment: ""
-        };
+    if(AuthFactory.isAuthenticated()) {
+        $scope.loggedIn = true;
+        $scope.username = AuthFactory.getUsername();
     }
+        
+    $scope.openLogin = function () {
+        ngDialog.open({ template: 'views/login.html', scope: $scope, className: 'ngdialog-theme-default', controller:"LoginController" });
+    };
+    
+    $scope.logOut = function() {
+       AuthFactory.logout();
+        $scope.loggedIn = false;
+        $scope.username = '';
+    };
+    
+    $rootScope.$on('login:Successful', function () {
+        $scope.loggedIn = AuthFactory.isAuthenticated();
+        $scope.username = AuthFactory.getUsername();
+    });
+        
+    $rootScope.$on('registration:Successful', function () {
+        $scope.loggedIn = AuthFactory.isAuthenticated();
+        $scope.username = AuthFactory.getUsername();
+    });
+    
+    $scope.stateis = function(curstate) {
+       return $state.is(curstate);  
+    };
+    
 }])
 
-// implement the IndexController and About Controller here
+.controller('HomeController',
 
-.controller('HomeController', ['$scope', 'menuFactory', 'corporateFactory', 'promotionFactory', function ($scope, menuFactory, corporateFactory, promotionFactory) {
+['$scope', 'menuFactory', 'corporateFactory', 'promotionFactory',
+function ($scope, menuFactory, corporateFactory, promotionFactory) {
+
     $scope.showDish = false;
     $scope.showLeader = false;
     $scope.showPromotion = false;
@@ -170,13 +91,61 @@ angular.module('confusionApp')
         );
 }])
 
-.controller('AboutController', ['$scope', 'corporateFactory', function ($scope, corporateFactory) {
+.controller('EventDetailController',
+
+['$scope', '$state', '$stateParams', 'menuFactory', 'commentFactory',
+function ($scope, $state, $stateParams, menuFactory, commentFactory) {
+
+    $scope.dish = {};
+    $scope.showDish = false;
+    $scope.message = "Loading ...";
+
+    $scope.dish = menuFactory.get({
+            id: $stateParams.id
+        })
+        .$promise.then(
+            function (response) {
+                $scope.dish = response;
+                $scope.showDish = true;
+            },
+            function (response) {
+                $scope.message = "Error: " + response.status + " " + response.statusText;
+            }
+        );
+
+    $scope.mycomment = {
+        rating: 5,
+        comment: ""
+    };
+
+    $scope.submitComment = function () {
+
+        commentFactory.save({id: $stateParams.id}, $scope.mycomment);
+
+        $state.go($state.current, {}, {reload: true});
+        
+        $scope.commentForm.$setPristine();
+
+        $scope.mycomment = {
+            rating: 5,
+            comment: ""
+        };
+    }
+}])
+
+.controller('MyEventsController',
+
+['$scope', 'corporateFactory',
+function ($scope, corporateFactory) {
 
     $scope.leaders = corporateFactory.query();
 
 }])
 
-.controller('FavoriteController', ['$scope', '$state', 'favoriteFactory', function ($scope, $state, favoriteFactory) {
+.controller('JoinedEventsController',
+
+['$scope', '$state', 'favoriteFactory',
+function ($scope, $state, favoriteFactory) {
 
     $scope.tab = 1;
     $scope.filtText = '';
@@ -228,43 +197,41 @@ angular.module('confusionApp')
     };
 }])
 
-.controller('HeaderController', ['$scope', '$state', '$rootScope', 'ngDialog', 'AuthFactory', function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
 
-    $scope.loggedIn = false;
-    $scope.username = '';
+.controller('NewEventController',
     
-    if(AuthFactory.isAuthenticated()) {
-        $scope.loggedIn = true;
-        $scope.username = AuthFactory.getUsername();
-    }
-        
-    $scope.openLogin = function () {
-        ngDialog.open({ template: 'views/login.html', scope: $scope, className: 'ngdialog-theme-default', controller:"LoginController" });
-    };
-    
-    $scope.logOut = function() {
-       AuthFactory.logout();
-        $scope.loggedIn = false;
-        $scope.username = '';
-    };
-    
-    $rootScope.$on('login:Successful', function () {
-        $scope.loggedIn = AuthFactory.isAuthenticated();
-        $scope.username = AuthFactory.getUsername();
-    });
-        
-    $rootScope.$on('registration:Successful', function () {
-        $scope.loggedIn = AuthFactory.isAuthenticated();
-        $scope.username = AuthFactory.getUsername();
-    });
-    
-    $scope.stateis = function(curstate) {
-       return $state.is(curstate);  
-    };
-    
-}])
+['$scope', 'feedbackFactory',
+function ($scope, feedbackFactory) {
 
-.controller('LoginController', ['$scope', 'ngDialog', '$localStorage', 'AuthFactory', function ($scope, ngDialog, $localStorage, AuthFactory) {
+        $scope.newEvent = {
+            title: "",
+            description: "",
+            place : "",
+            dateAndTime: "",
+            tags:""
+        };
+
+        $scope.createNewEvent = function () {
+
+            console.log('Adding new event ', $scope.newEvent);
+
+            feedbackFactory.save($scope.newEvent);
+            $scope.newEvent = {
+                title: "",
+                description: "",
+                place : "",
+                dateAndTime: "",
+                tags:""
+            };
+            $scope.newEventForm.$setPristine();
+        };
+    }]
+)
+
+.controller('LoginController',
+
+['$scope', 'ngDialog', '$localStorage', 'AuthFactory',
+function ($scope, ngDialog, $localStorage, AuthFactory) {
     
     $scope.loginData = $localStorage.getObject('userinfo','{}');
     
@@ -284,7 +251,10 @@ angular.module('confusionApp')
     
 }])
 
-.controller('RegisterController', ['$scope', 'ngDialog', '$localStorage', 'AuthFactory', function ($scope, ngDialog, $localStorage, AuthFactory) {
+.controller('RegisterController',
+
+['$scope', 'ngDialog', '$localStorage', 'AuthFactory',
+function ($scope, ngDialog, $localStorage, AuthFactory) {
     
     $scope.register={};
     $scope.loginData={};

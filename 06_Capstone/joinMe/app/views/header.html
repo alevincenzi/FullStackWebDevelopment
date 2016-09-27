@@ -11,17 +11,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li ng-class="{active: stateis('app')}">
+                <li ng-class="{active: stateis('app')} || stateis('app.eventdetail')">
                     <a ui-sref="app"> Home</a>
                 </li>
-                <li ng-class="{active: stateis('app.aboutus')}">
-                    <a ui-sref="app.aboutus"> About</a>
+                <li ng-class="{active: stateis('app.myevents')}">
+                    <a ui-sref="app.myevents"> My Events</a>
                 </li>
-                <li ng-class="{active: stateis('app.menu') || stateis('app.dishdetails')}">
-                    <a ui-sref="app.menu"> Menu</a>
-                </li>
-                <li ng-class="{active: stateis('app.favorites')}">
-                    <a ui-sref="app.favorites"> Favorites</a>
+                <li ng-class="{active: stateis('app.joinedevents')}">
+                    <a ui-sref="app.joinedevents"> Joined Events</a>
                 </li>
                 <li ng-class="{active: stateis('app.newevent')}">
                     <a ui-sref="app.newevent"> New Event</a>

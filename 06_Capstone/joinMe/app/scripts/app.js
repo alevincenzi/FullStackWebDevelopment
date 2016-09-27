@@ -4,7 +4,6 @@ angular.module('confusionApp', ['ui.router','ngResource','ngDialog'])
 .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
         
-            // route for the home page
             .state('app', {
                 url:'/',
                 views: {
@@ -23,18 +22,36 @@ angular.module('confusionApp', ['ui.router','ngResource','ngDialog'])
 
             })
         
-            // route for the aboutus page
-            .state('app.aboutus', {
-                url:'aboutus',
+            .state('app.eventdetail', {
+                url: '/event/:id',
                 views: {
                     'content@': {
-                        templateUrl : 'views/aboutus.html',
-                        controller  : 'AboutController'                  
+                        templateUrl : 'views/eventdetail.html',
+                        controller  : 'EventDetailController'
+                   }
+                }
+            })
+
+            .state('app.myevents', {
+                url:'myevents',
+                views: {
+                    'content@': {
+                        templateUrl : 'views/myevents.html',
+                        controller  : 'MyEventsController'                  
                     }
                 }
             })
+
+            .state('app.joinedevents', {
+                url: 'joinedevents',
+                views: {
+                    'content@': {
+                        templateUrl : 'views/joinedevents.html',
+                        controller  : 'JoinedEventsController'
+                   }
+                }
+            })
         
-            // route for the new event page
             .state('app.newevent', {
                 url:'newevent',
                 views: {
@@ -42,39 +59,6 @@ angular.module('confusionApp', ['ui.router','ngResource','ngDialog'])
                         templateUrl : 'views/newevent.html',
                         controller  : 'NewEventController'                  
                     }
-                }
-            })
-
-            // route for the menu page
-            .state('app.menu', {
-                url: 'menu',
-                views: {
-                    'content@': {
-                        templateUrl : 'views/menu.html',
-                        controller  : 'MenuController'
-                    }
-                }
-            })
-
-            // route for the dishdetail page
-            .state('app.dishdetails', {
-                url: 'menu/:id',
-                views: {
-                    'content@': {
-                        templateUrl : 'views/dishdetail.html',
-                        controller  : 'DishDetailController'
-                   }
-                }
-            })
-        
-            // route for the dishdetail page
-            .state('app.favorites', {
-                url: 'favorites',
-                views: {
-                    'content@': {
-                        templateUrl : 'views/favorites.html',
-                        controller  : 'FavoriteController'
-                   }
                 }
             });
     
