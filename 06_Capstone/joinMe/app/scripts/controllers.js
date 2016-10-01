@@ -47,72 +47,75 @@ function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
 function ($scope, $window) {
 
  $scope.events= [{
-            _id : 1,
-            owner: "Tom Cruz",
-            image : "../images/joinme-icon.png",
-            title: "Football",
-            description: "Play together. This Youth Flag Football program is open to boys that will be entering 7th - 9th grade. ",
-            place : "Lausanne",
-            participants: "At least 11 participants",
-            dateAndTime: "11.02.2016 At 12:00",
-            cost: "Free",
-            tags:"foot, group"
-        }
-        ,{
-                    _id : 2,
-                     owner: "J-Lo",
-                     image : "../images/joinme-icon.png",
-                    title: "Dance",
-                    description: "Cool dancing coaching time",
-                    place : "Zurich",
-                    participants: "At most 5 participants",
-                      dateAndTime: "11.02.2016 At 12:00",
-                    cost: "12 per person",
-                    tags:"Dance, fun, play"
-                }
-,{
-                    _id : 3,
-                     owner: "Luciano Pavarotti",
-                     image : "../images/joinme-icon.png",
-                    title: "Dance",
-                    description: "Cool dancing coaching time",
-                    place : "Lausanne",
-                    participants: "At most 5 participants",
-                    dateAndTime: "11.02.2016 At 12:00",
-                    cost: "20 to devide between participants",
-                    tags:"Dance, fun, play"
-                },
-{
-            _id : 4,
-              owner: "Yann Bartes",
-            image : "../images/joinme-icon.png",
-            title: "Baseball",
-            description: "Play together. This Youth Flag Football program is open to boys that will be entering 7th - 9th grade. ",
-            place : "Morges",
-            participants: "At least 11 participants",
-              dateAndTime: "11.02.2016 At 12:00",
-            cost: "Free",
-            tags:"foot, group"
-        }
-        ,{
-                    _id : 5,
-                      owner: "J-Lo",
-                     image : "../images/joinme-icon.png",
-                    title: "Tennis",
-                    description: "Cool dancing coaching time",
-                    place : "Zurich",
-                    participants: "At most 5 participants",
-                      dateAndTime: "11.02.2016 At 12:00",
-                    cost: "Free",
-                    tags:"Dance, fun, play"
-                }
- ];
+                                    _id : 1,
+                                    owner: "Tom Cruz",
+                                    image : "../images/joinme-icon.png",
+                                    title: "Football",
+                                    description: "This meetup is for the people who want to study or practice seriously Japanese or French. In both languages, every level, even beginners, are welcome. The purpose is to have equal numbers of Japanese native speakers and French speakers to form some duos. I hope it! /n This event is located in Rolex learning Center. It's a nice and quiet area.",
+                                    place : "Lausanne",
+                                    participants: "At least 11 participants",
+                                    dateAndTime: "11.02.2016 At 12:00",
+                                    cost: "Free",
+                                    tags:"foot, group"
+                                }
+                                ,{
+                                            _id : 2,
+                                             owner: "J-Lo",
+                                             image : "../images/joinme-icon.png",
+                                            title: "Dance",
+                                            description: "Cool dancing coaching time",
+                                            place : "Zurich",
+                                            participants: "At most 5 participants",
+                                              dateAndTime: "11.02.2016 At 12:00",
+                                            cost: "12 per person",
+                                            tags:"Dance, fun, play"
+                                        }
+                        ,{
+                                            _id : 3,
+                                             owner: "Luciano Pavarotti",
+                                             image : "../images/joinme-icon.png",
+                                            title: "Dance",
+                                            description: "Cool dancing coaching time",
+                                            place : "Lausanne",
+                                            participants: "At most 5 participants",
+                                            dateAndTime: "11.02.2016 At 12:00",
+                                            cost: "20 to devide between participants",
+                                            tags:"Dance, fun, play"
+                                        },
+                        {
+                                    _id : 4,
+                                      owner: "Yann Bartes",
+                                    image : "../images/joinme-icon.png",
+                                    title: "Baseball",
+                                    description: "Play together. This Youth Flag Football program is open to boys that will be entering 7th - 9th grade. ",
+                                    place : "Morges",
+                                    participants: "At least 11 participants",
+                                      dateAndTime: "11.02.2016 At 12:00",
+                                    cost: "Free",
+                                    tags:"foot, group"
+                                }
+                                ,{
+                                            _id : 5,
+                                              owner: "J-Lo",
+                                             image : "../images/joinme-icon.png",
+                                            title: "Tennis",
+                                            description: "Cool dancing coaching time",
+                                            place : "Zurich",
+                                            participants: "At most 5 participants",
+                                              dateAndTime: "11.02.2016 At 12:00",
+                                            cost: "Free",
+                                            tags:"Dance, fun, play"
+                                        }
+                         ];
 
-
-    $scope.showEvent = function(event) {
-      $window.location.href ('#/event/showEvent');
-//      $location.path('#/event/' + event._id);
-    };
+    $scope.ellipsify = function(str) {
+    if (str.length > 120) {
+        return (str.substring(0, 120) + "...");
+    }
+    else {
+        return str;
+    }
+}
 
 }])
 
@@ -173,11 +176,48 @@ function ($scope, $state, $stateParams) {
 }])
 
 .controller('MyEventsController',
+['$scope',
+function ($scope) {
 
-['$scope', 'corporateFactory',
-function ($scope, corporateFactory) {
+ $scope.events= [{
+                _id : 1,
+                owner: "Tom Cruz",
+                image : "../images/joinme-icon.png",
+                title: "Football",
+                description: "This meetup is for the people who want to study or practice seriously Japanese or French. In both languages, every level, even beginners, are welcome. The purpose is to have equal numbers of Japanese native speakers and French speakers to form some duos. I hope it! /n This event is located in Rolex learning Center. It's a nice and quiet area.",
+                place : "Lausanne",
+                participants: "At least 11 participants",
+                dateAndTime: "11.02.2016 At 12:00",
+                cost: "Free",
+                tags:"foot, group"
+            }
+            ,{
+                        _id : 2,
+                         owner: "J-Lo",
+                         image : "../images/joinme-icon.png",
+                        title: "Dance",
+                        description: "Cool dancing coaching time",
+                        place : "Zurich",
+                        participants: "At most 5 participants",
+                          dateAndTime: "11.02.2016 At 12:00",
+                        cost: "12 per person",
+                        tags:"Dance, fun, play"
+                    }
+    ];
 
-    $scope.leaders = corporateFactory.query();
+    $scope.showEvents = true;
+    $scope.noEvents= function(){
+        console.log($scope.events.length);
+        return $scope.showEvents && ($scope.events.length ==0);
+    }
+     $scope.ellipsify = function(str) {
+        if (str.length > 120) {
+            return (str.substring(0, 120) + "...");
+        }
+        else {
+            return str;
+        }
+     }
 
 }])
 
@@ -186,54 +226,70 @@ function ($scope, corporateFactory) {
 ['$scope', '$state', 'favoriteFactory',
 function ($scope, $state, favoriteFactory) {
 
-    $scope.tab = 1;
-    $scope.filtText = '';
-    $scope.showDetails = false;
-    $scope.showDelete = false;
-    $scope.showMenu = false;
-    $scope.message = "Loading ...";
+    $scope.events= [];
+    $scope.showEvents = true;
+    $scope.noEvents= function(){
+        console.log($scope.events.length);
+        return $scope.showEvents && ($scope.events.length ==0);
+    }
 
-    favoriteFactory.query(
-        function (response) {
-            $scope.dishes = response.dishes;
-            $scope.showMenu = true;
-        },
-        function (response) {
-            $scope.message = "Error: " + response.status + " " + response.statusText;
-        });
+//    $scope.tab = 1;
+//    $scope.filtText = '';
+//    $scope.showDetails = false;
+//    $scope.showDelete = false;
+//    $scope.showMenu = false;
+//    $scope.message = "Loading ...";
+//
+//    favoriteFactory.query(
+//        function (response) {
+//            $scope.dishes = response.dishes;
+//            $scope.showMenu = true;
+//        },
+//        function (response) {
+//            $scope.message = "Error: " + response.status + " " + response.statusText;
+//        });
+//
+//    $scope.select = function (setTab) {
+//        $scope.tab = setTab;
+//
+//        if (setTab === 2) {
+//            $scope.filtText = "appetizer";
+//        } else if (setTab === 3) {
+//            $scope.filtText = "mains";
+//        } else if (setTab === 4) {
+//            $scope.filtText = "dessert";
+//        } else {
+//            $scope.filtText = "";
+//        }
+//    };
+//
+//    $scope.isSelected = function (checkTab) {
+//        return ($scope.tab === checkTab);
+//    };
+//
+//    $scope.toggleDetails = function () {
+//        $scope.showDetails = !$scope.showDetails;
+//    };
+//
+//    $scope.toggleDelete = function () {
+//        $scope.showDelete = !$scope.showDelete;
+//    };
+//
+//    $scope.deleteFavorite = function(dishid) {
+//        console.log('Delete favorites', dishid);
+//        favoriteFactory.delete({id: dishid});
+//        $scope.showDelete = !$scope.showDelete;
+//        $state.go($state.current, {}, {reload: true});
+//    };
 
-    $scope.select = function (setTab) {
-        $scope.tab = setTab;
-
-        if (setTab === 2) {
-            $scope.filtText = "appetizer";
-        } else if (setTab === 3) {
-            $scope.filtText = "mains";
-        } else if (setTab === 4) {
-            $scope.filtText = "dessert";
-        } else {
-            $scope.filtText = "";
+    $scope.ellipsify = function(str) {
+        if (str.length > 120) {
+            return (str.substring(0, 120) + "...");
         }
-    };
-
-    $scope.isSelected = function (checkTab) {
-        return ($scope.tab === checkTab);
-    };
-
-    $scope.toggleDetails = function () {
-        $scope.showDetails = !$scope.showDetails;
-    };
-
-    $scope.toggleDelete = function () {
-        $scope.showDelete = !$scope.showDelete;
-    };
-
-    $scope.deleteFavorite = function(dishid) {
-        console.log('Delete favorites', dishid);
-        favoriteFactory.delete({id: dishid});
-        $scope.showDelete = !$scope.showDelete;
-        $state.go($state.current, {}, {reload: true});
-    };
+        else {
+            return str;
+        }
+    }
 }])
 
 

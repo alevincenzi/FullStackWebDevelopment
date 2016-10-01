@@ -23,13 +23,16 @@
                         </div>
                         <div class="media-body">
                             <h2 class="media-heading">{{event.title}}</h2>
-                            <span class="badge">{{event.participants}}</span></h2>
-                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{event.dateAndTime}}
                             <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <span class="label label-danger">{{event.place}}</span>
-                            <p><strong>Cost: </strong>{{event.cost}}</p>
-                            <p>{{event.description}}</p>
-                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> <span class="label label-primary">{{event.tags}}</span>
-                            <p> </p>
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{event.dateAndTime}}
+                            <br>
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{event.participants}}
+                            <br>
+                            <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> {{event.cost}}
+                            <br>
+                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{event.tags}}
+                            <p>{{ellipsify(event.description)}}</p>
+                            <a  href="#/event/{{event._id}}"><button type="button" class="btn btn-success md pull-right">More...</button></a>
                         </div>
                     </div>
                 </li>
