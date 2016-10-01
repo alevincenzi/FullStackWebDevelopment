@@ -1,7 +1,40 @@
 <div class="container">
     <div class="row row-content-last">
-        <div class="col-xs-12 col-sm-8">
-            <h2>This is the list of all the events ...</h2>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Search" ng-model="searchText">
+                    </div>
+                </form>
+            </div>
+        </nav>
+
+        <div class="col-xs-12 col-sm-12">
+            <ul class="list-inline">
+                <li ng-repeat="event in events | filter:searchText"
+                     >
+                    <div class="media">
+                        <div class="media-left media-top">
+                            <a href="#/event/{{event._id}}">
+                                <img class="media-object img-thumbnail"
+                                     ng-src={{event.image}} alt="imageEvent">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading">{{event.title}}</h2>
+                            <span class="badge">{{event.participants}}</span></h2>
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{event.dateAndTime}}
+                            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <span class="label label-danger">{{event.place}}</span>
+                            <p><strong>Cost: </strong>{{event.cost}}</p>
+                            <p>{{event.description}}</p>
+                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> <span class="label label-primary">{{event.tags}}</span>
+                            <p> </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
+
 </div>

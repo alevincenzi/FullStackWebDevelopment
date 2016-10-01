@@ -23,7 +23,7 @@ angular.module('confusionApp', ['ui.router','ngResource','ngDialog'])
             })
         
             .state('app.eventdetail', {
-                url: '/event/:id',
+                url: 'event/:id',
                 views: {
                     'content@': {
                         templateUrl : 'views/eventdetail.html',
