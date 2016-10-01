@@ -40,11 +40,12 @@ app.use(cookieParser());
 // passport config
 app.use(passport.initialize());
 
-app.use('/users',      users);
-app.use('/dishes',     dishRouter);
-app.use('/promotions', promoRouter);
-app.use('/leaders',    leaderRouter);
-app.use('/favorites',  favoriteRouter);
+app.use(express.static(__dirname + '/dist'));
+app.use('/api/users',      users);
+app.use('/api/dishes',     dishRouter);
+app.use('/api/promotions', promoRouter);
+app.use('/api/leaders',    leaderRouter);
+app.use('/api/favorites',  favoriteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

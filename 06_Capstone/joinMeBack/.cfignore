@@ -1,7 +1,14 @@
+app/
+bower_components/
 node_modules/
+bower.json
+gulpfile.json
+README.md
 logs
+*.iml
 *.log
 *.DS_Store
+.idea/
 .git/
 .github/
 .gitignore

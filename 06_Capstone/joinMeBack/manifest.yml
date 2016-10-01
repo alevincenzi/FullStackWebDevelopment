@@ -2,5 +2,5 @@ applications:
 - path: .
   memory: 256M
   instances: 1
-  name: joinMeBack
-  host: joinMeBack
+  name: joinMe
+  host: joinMe
