@@ -3,9 +3,9 @@
   "main": "server.js",
   "description": "Capstone project for the FullStack specialization. Built on top of Bluemix Example",
   "version": "0.1.1",
-  "private": false,
+  "private": true,
   "engines": {
-    "node": "4.4.*"
+    "node": ">=0.10.0"
   },
   "scripts": {
     "start": "node server.js"
@@ -15,11 +15,9 @@
     "url": "https://github.com/alevincenzi/FullStackWebDevelopment/tree/master/06_Capstone/joinMe"
   },
   "dependencies": {
-    "cf-deployment-tracker-client": "^0.1.1",
     "cfenv": "1.0.x",
     "express": "3.4.x",
-    "underscore": "1.6.x",
-    "cf-deployment-tracker-client": "*"
+    "underscore": "1.6.x"
   },
   "devDependencies": {
     "browser-sync": "^2.10.0",
@@ -45,22 +43,11 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "phantomjs": "^1.9.19"
   },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "author": "IBM Corp + AVincenzi",
+  "author": "AVincenzi",
   "contributors": [
     {
       "name": "Alessandro Vincenzi",
       "email": "alessandro84.vincenzi@gmail.com"
-    },
-    {
-      "name": "Jake Peyser",
-      "email": "jepeyser@us.ibm.com"
-    },
-    {
-      "name": "Twana Daniel",
-      "email": "twanaazi@ie.ibm.com"
     }
   ],
   "license": "Apache-2.0"
