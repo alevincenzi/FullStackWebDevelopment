@@ -9,7 +9,9 @@ angular.module('joinMeApp')
     return $resource(
         baseURL + "events/:id",
         null,
-        { 'update': { method: 'PUT' }}
+        {
+            'update': { method: 'PUT' }
+        }
     );
 }])
 
@@ -18,7 +20,21 @@ angular.module('joinMeApp')
     return $resource(
         baseURL + "events/:id/comments/:commentId",
         {id:"@id", commentId: "@commentId"},
-        { 'update': { method: 'PUT'}}
+        {
+            'update': { method: 'PUT'}
+        }
+    );
+}])
+
+.factory('joinsFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
+
+    return $resource(
+        baseURL + "joins/:id",
+        null,
+        {
+            'update': { method: 'PUT' },
+            'query' : {method:  'GET', isArray:false}
+        }
     );
 }])
 
@@ -90,8 +106,11 @@ function($resource, $http, $localStorage, $rootScope, $window, baseURL, ngDialog
       
         $resource(baseURL + "users/login").save(loginData,
             function(response) {
-                storeUserCredentials({ username: loginData.username, token: response.token, userid: response.userid });
-                // console.log(response);
+                storeUserCredentials({
+                    username : loginData.username,
+                    token    : response.token,
+                    userid   : response.userid });
+
                 $rootScope.$broadcast('login:Successful');
             },
             function(response){

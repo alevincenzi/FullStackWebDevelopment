@@ -82,18 +82,50 @@ function ($scope, $rootScope, eventsFactory, AuthFactory) {
 
 .controller('EventDetailController',
 
-['$scope', '$state', '$stateParams', 'eventsFactory', 'commentsFactory',
-function ($scope, $state, $stateParams, eventsFactory, commentsFactory) {
+['$scope', '$rootScope', '$state', '$stateParams', 'eventsFactory', 'commentsFactory', 'joinsFactory', 'AuthFactory',
+function ($scope, $rootScope, $state, $stateParams, eventsFactory, commentsFactory, joinsFactory, AuthFactory) {
 
     $scope.eevent = {};
-
     $scope.message = "";
+    $scope.loggedIn = AuthFactory.isAuthenticated();
+    
+    var completed = false;
+    var hasJoinedTheEvent = false;
+
+    if ($scope.loggedIn) {
+        $scope.userid = AuthFactory.getUserId();
+    }
+
+    $rootScope.$on('login:Successful', function() {
+        $scope.loggedIn = AuthFactory.isAuthenticated();
+        $scope.userid   = AuthFactory.getUserId();
+    });
+
+    var searchForJoinEvents = function() {
+        joinsFactory.query(
+            function (response) {
+                hasJoinedTheEvent = false;
+                for(var index = 0 ; index < response.events.length ; index++) {   
+                    if ($scope.eevent._id === response.events[index]._id) {
+                        hasJoinedTheEvent = true;
+                        break;
+                    }
+                }
+                completed = true;
+            },
+            function (response) {
+                $scope.message = "Error: " + response.status + " " + response.statusText;
+            }
+        );
+    };
+
     $scope.eevent = eventsFactory.get({
             id: $stateParams.id
         })
         .$promise.then(
             function (response) {
                 $scope.eevent = response;
+                searchForJoinEvents();
             },
             function (response) {
                 $scope.message = "Error: " + response.status + " " + response.statusText;
@@ -102,6 +134,35 @@ function ($scope, $state, $stateParams, eventsFactory, commentsFactory) {
 
     $scope.mycomment = {
         comment: ""
+    };
+
+    var userIsOwner = function(){
+        return ($scope.eevent.createdBy._id === $scope.userid);
+    };  
+    
+    $scope.canDelete = function(){
+        return completed && userIsOwner();
+    };    
+    $scope.canJoin = function(){
+        return completed && !userIsOwner() && !hasJoinedTheEvent;
+    };    
+    $scope.canLeave = function(){
+        return completed && !userIsOwner() && hasJoinedTheEvent;
+    };    
+
+    $scope.joinEvent = function() {
+        joinsFactory.save({_id: $scope.eevent._id});
+        $state.go($state.current, {}, {reload: true});
+    };
+    
+    $scope.deleteEvent = function() {
+        eventsFactory.delete({id: $scope.eevent._id});
+        $state.go('app');
+    };
+    
+    $scope.leaveEvent = function() {
+        joinsFactory.delete({id: $scope.eevent._id});
+        $state.go($state.current, {}, {reload: true});
     };
 
     $scope.submitComment = function () {
@@ -124,6 +185,7 @@ function ($scope, $state, $stateParams, eventsFactory, commentsFactory) {
 function ($scope, $rootScope, eventsFactory, AuthFactory) {
 
     $scope.loggedIn = AuthFactory.isAuthenticated();
+    $scope.hasEvents = false;
 
     if ($scope.loggedIn) {
         $scope.userid = AuthFactory.getUserId();
@@ -136,8 +198,8 @@ function ($scope, $rootScope, eventsFactory, AuthFactory) {
 
     eventsFactory.query({ "createdBy" : $scope.userid }).$promise.then(
         function (response) {
-            console.log(AuthFactory.getUserId());
             $scope.events = response;
+            $scope.hasEvents = ($scope.events.length !== 0);
         },
         function (response) {
             $scope.message = "Error: " + response.status + " " + response.statusText;
@@ -156,9 +218,39 @@ function ($scope, $rootScope, eventsFactory, AuthFactory) {
 
 .controller('JoinedEventsController',
 
-['$scope', '$state', 'eventsFactory',
-function ($scope, $state, eventsFactory) {
+['$scope', '$rootScope', 'joinsFactory', 'AuthFactory',
+function ($scope, $rootScope, joinsFactory, AuthFactory) {
 
+    $scope.loggedIn = AuthFactory.isAuthenticated();
+    $scope.hasEvents = false;
+    
+    if ($scope.loggedIn) {
+        $scope.userid = AuthFactory.getUserId();
+    }
+
+    joinsFactory.query(
+        function (response) {
+            $scope.events = response.events;
+            $scope.hasEvents = ($scope.events.length !== 0);
+        },
+        function (response) {
+            $scope.message = "Error: " + response.status + " " + response.statusText;
+        }
+    );
+
+    $rootScope.$on('login:Successful', function() {
+        $scope.loggedIn = AuthFactory.isAuthenticated();
+        $scope.userid   = AuthFactory.getUserId();
+    });
+    
+    $scope.ellipsify = function(str) {
+        if (str.length > 120) {
+            return (str.substring(0, 120) + "...");
+        }
+        else {
+            return str;
+        }
+    };
 }])
 
 .controller('NewEventController',

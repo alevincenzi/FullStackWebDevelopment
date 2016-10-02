@@ -86,6 +86,7 @@ router.route('/login')
 						res.status(200).json(
 						{ status : 'Login successful!',
 						  success: true,
+                          userid : user._id,
 						  token  : token});
 					}
 				);

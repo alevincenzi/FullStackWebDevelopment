@@ -33,9 +33,9 @@
             <p>{{eevent.description}}</p>
             <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{eevent.tags}}
             <br>
-            <button type="button" class="btn btn-success pull-right">Join</button>
-            <button type="button" class="btn btn-danger pull-right">Delete</button>
-            <button type="button" class="btn btn-warning pull-right">Leave</button>
+            <button type="button" class="btn btn-success pull-right" ng-show="canJoin()"   ng-click="joinEvent()">Join</button>
+            <button type="button" class="btn btn-danger  pull-right" ng-show="canDelete()" ng-click="deleteEvent()">Delete</button>
+            <button type="button" class="btn btn-warning pull-right" ng-show="canLeave()"  ng-click="leaveEvent()">Leave</button>
         </div>
 
         <div class="col-xs-9 col-xs-offset-1">

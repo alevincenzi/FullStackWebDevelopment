@@ -25,7 +25,11 @@ joinRouter.route('/')
             .exec(
                 function (err, join) {
                     if (err) throw err;
-                    res.json(join);
+                    if (join) {
+                        res.json(join);
+                    } else {
+                        res.json(new Joins({"joinedBy" : req.decoded._id}));
+                    }
                 }
             );
     }
