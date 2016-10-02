@@ -56,7 +56,7 @@ function ($scope, $window) {
                                     participants: "At least 11 participants",
                                     dateAndTime: "11.02.2016 At 12:00",
                                     cost: "Free",
-                                    tags:"foot, group"
+                                   tags:["foot", "group"]
                                 }
                                 ,{
                                             _id : 2,
@@ -68,7 +68,7 @@ function ($scope, $window) {
                                             participants: "At most 5 participants",
                                               dateAndTime: "11.02.2016 At 12:00",
                                             cost: "12 per person",
-                                            tags:"Dance, fun, play"
+                                             tags:["Dance", "fun", "play"]
                                         }
                         ,{
                                             _id : 3,
@@ -80,7 +80,7 @@ function ($scope, $window) {
                                             participants: "At most 5 participants",
                                             dateAndTime: "11.02.2016 At 12:00",
                                             cost: "20 to devide between participants",
-                                            tags:"Dance, fun, play"
+                                             tags:["Dance", "fun", "play"]
                                         },
                         {
                                     _id : 4,
@@ -92,7 +92,7 @@ function ($scope, $window) {
                                     participants: "At least 11 participants",
                                       dateAndTime: "11.02.2016 At 12:00",
                                     cost: "Free",
-                                    tags:"foot, group"
+                                    tags:["foot", "group"]
                                 }
                                 ,{
                                             _id : 5,
@@ -104,7 +104,7 @@ function ($scope, $window) {
                                             participants: "At most 5 participants",
                                               dateAndTime: "11.02.2016 At 12:00",
                                             cost: "Free",
-                                            tags:"Dance, fun, play"
+                                            tags:["Dance", "fun", "play"]
                                         }
                          ];
 
@@ -135,7 +135,7 @@ function ($scope, $state, $stateParams) {
             participants: "At least 11 participants",
             dateAndTime: "11.02.2016 At 12:00",
             cost: "20 to devide between participants",
-            tags:"foot, group",
+            tags:["Dance", "fun", "play"],
             comments: [
             {comment : "Amazing event, thank you! I am in", postedBy: "Michel Obama"},
             {comment : "Do we need to bring anything?", postedBy: "M. Jordan"},
@@ -189,7 +189,7 @@ function ($scope) {
                 participants: "At least 11 participants",
                 dateAndTime: "11.02.2016 At 12:00",
                 cost: "Free",
-                tags:"foot, group"
+                tags:["foot", "group"]
             }
             ,{
                         _id : 2,
@@ -201,7 +201,7 @@ function ($scope) {
                         participants: "At most 5 participants",
                           dateAndTime: "11.02.2016 At 12:00",
                         cost: "12 per person",
-                        tags:"Dance, fun, play"
+                        tags:["Dance", "fun", "play"]
                     }
     ];
 
@@ -232,6 +232,7 @@ function ($scope, $state, favoriteFactory) {
         console.log($scope.events.length);
         return $scope.showEvents && ($scope.events.length ==0);
     }
+
 
 //    $scope.tab = 1;
 //    $scope.filtText = '';
@@ -312,8 +313,22 @@ function ($scope, feedbackFactory) {
         $scope.costAmount=0;
         $scope.nbrParticipants=0;
 
+        //-----------------------------
+        $scope.tTag = [];
+        var parseTags = function (){
+            for (var v in $scope.tags){
+                $scope.tTag.push($scope.tags[v].text);
+            }
+        }
+        //-----------------------------
+
 
         $scope.createNewEvent = function () {
+
+        //-----------------------------
+            parseTags();
+            $scope.newEvent.tags= $scope.tTag;
+        //-----------------------------
 
             console.log('Adding new event ', $scope.newEvent);
             $scope.newEvent.participants= $scope.selectedParticipants;
@@ -326,6 +341,7 @@ function ($scope, feedbackFactory) {
             }else{
                 $scope.newEvent.cost= $scope.selectedCost;
             }
+
 
 //            feedbackFactory.save($scope.newEvent);
 //            $scope.newEvent = {

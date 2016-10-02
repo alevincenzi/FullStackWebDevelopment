@@ -3,7 +3,7 @@
 
         <div class="panel-heading col-xs-12 col-sm-12">
             <div class="col-xs-2 col-sm-2">
-                <img class=" img-responsive"
+                <img class="v"
                      ng-src={{event.image}} alt="imageEvent">
             </div>
             <div class="col-xs-10 col-sm-10">
@@ -31,7 +31,11 @@
         <div class="panel-body col-xs-12 col-sm-12">
             <br>
             <p>{{event.description}}</p>
-            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{event.tags}}
+            <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                             <span  ng-repeat="tag in event.tags">
+                                 <span class="label label-primary">{{tag}}</span>
+                             </span>
+
             <br>
             <button type="button" class="btn btn-success pull-right">Join</button>
             <button type="button" class="btn btn-danger pull-right">Delete</button>
