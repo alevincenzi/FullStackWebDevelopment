@@ -288,10 +288,18 @@ function ($scope, $state, eventsFactory) {
     $scope.costAmount=0;
     $scope.nbrParticipants=0;
 
+    $scope.tTag = [];
+    var parseTags = function (){
+        for (var v in $scope.tags){
+            $scope.tTag.push($scope.tags[v].text);
+        }
+    };
+
     $scope.createNewEvent = function () {
 
-        console.log('Adding new event ', $scope.newEvent);
-        
+        parseTags();
+        $scope.newEvent.tags= $scope.tTag;
+
         $scope.newEvent.participants = $scope.selectedParticipants;
         
         if ($scope.selectedParticipants !== 'Open to everybody'){
@@ -307,8 +315,6 @@ function ($scope, $state, eventsFactory) {
 
         eventsFactory.save($scope.newEvent,
             function(response) {
-                console.log(response);
-                console.log(response._id);
                 $state.go('app.eventdetail', { id: response._id });
             }
         );
@@ -348,7 +354,6 @@ function ($scope, ngDialog, $localStorage, AuthFactory) {
     $scope.loginData={};
 
     $scope.doRegister = function() {
-        console.log('Doing registration', $scope.registration);
         AuthFactory.register($scope.registration);
         ngDialog.close();
     };    

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('joinMeApp', ['ui.router','ngResource','ngDialog'])
+angular.module('joinMeApp', ['ui.router','ngResource','ngDialog', 'ngTagsInput'])
 .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
         

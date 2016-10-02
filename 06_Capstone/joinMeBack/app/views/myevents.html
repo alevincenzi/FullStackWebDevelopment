@@ -47,7 +47,10 @@
                                 <br>
                                 <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> {{eevent.cost}}
                                 <br>
-                                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{eevent.tags}}
+                                <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                                <span  ng-repeat="tag in eevent.tags">
+                                    <span class="label label-primary">{{tag}}</span>
+                                </span>
                                 <p>{{ellipsify(eevent.description)}}</p>
                                 <a ui-sref="app.eventdetail({id: eevent._id})">
                                     <button type="button" class="btn btn-success md pull-right" ng-if="loggedIn">More...</button>

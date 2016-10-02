@@ -31,7 +31,10 @@
         <div class="panel-body col-xs-12 col-sm-12">
             <br>
             <p>{{eevent.description}}</p>
-            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{eevent.tags}}
+            <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+            <span  ng-repeat="tag in eevent.tags">
+                <span class="label label-primary">{{tag}}</span>
+            </span>
             <br>
             <button type="button" class="btn btn-success pull-right" ng-show="canJoin()"   ng-click="joinEvent()">Join</button>
             <button type="button" class="btn btn-danger  pull-right" ng-show="canDelete()" ng-click="deleteEvent()">Delete</button>

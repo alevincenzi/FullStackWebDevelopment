@@ -45,10 +45,10 @@ var eventSchema = new Schema(
 			type:     String,
 			required: true				
 		},
-		tags: {
+		tags: [{
 			type:     String,
 			required: true
-		},
+		}],
 		createdBy: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User'
