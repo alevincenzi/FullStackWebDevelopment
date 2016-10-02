@@ -30,7 +30,12 @@
                             <br>
                             <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> {{event.cost}}
                             <br>
-                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{event.tags}}
+                            <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                             <span  ng-repeat="tag in event.tags">
+                                 <span class="label label-primary">{{tag}}</span>
+                             </span>
+
+
                             <p>{{ellipsify(event.description)}}</p>
                             <a  href="#/event/{{event._id}}"><button type="button" class="btn btn-success md pull-right">More...</button></a>
                         </div>
