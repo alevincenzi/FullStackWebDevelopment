@@ -1,20 +1,20 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var favoriteSchema = new Schema(
+var joinSchema = new Schema(
 	{
-		postedBy: {
+		joinedBy: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User'
 		},
-        dishes : [{
+        events : [{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Dish'
+			ref: 'Event'
 		}]
 	},
 	{ timestamps: true }
 );
 
-var Favorites = mongoose.model('Favorites', favoriteSchema);
+var Joins = mongoose.model('Join', joinSchema);
 
-module.exports = Favorites ;
+module.exports = Joins ;

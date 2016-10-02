@@ -6,12 +6,11 @@ var bodyParser    = require('body-parser');
 var mongoose      = require('mongoose');
 var passport      = require('passport');
 
-var config         = require('./config');
-var authenticate   = require('./authenticate');
-var routes         = require('./routes/index');
-var users          = require('./routes/users');
-var eventRouter    = require('./routes/eventRouter');
-var favoriteRouter = require('./routes/favoriteRouter');
+var config       = require('./config');
+var authenticate = require('./authenticate');
+var users        = require('./routes/users');
+var eventRouter  = require('./routes/eventRouter');
+var joinRouter   = require('./routes/joinRouter');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoUrl);
@@ -39,9 +38,9 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 app.use(express.static(__dirname + '/dist'));
-app.use('/api/users',      users);
-app.use('/api/events',     eventRouter);
-app.use('/api/favorites',  favoriteRouter);
+app.use('/api/users',  users);
+app.use('/api/events', eventRouter);
+app.use('/api/joins',  joinRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
