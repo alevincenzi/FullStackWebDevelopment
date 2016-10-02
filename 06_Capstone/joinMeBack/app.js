@@ -11,8 +11,6 @@ var authenticate   = require('./authenticate');
 var routes         = require('./routes/index');
 var users          = require('./routes/users');
 var eventRouter    = require('./routes/eventRouter');
-var promoRouter    = require('./routes/promoRouter');
-var leaderRouter   = require('./routes/leaderRouter');
 var favoriteRouter = require('./routes/favoriteRouter');
 
 mongoose.Promise = global.Promise;
@@ -43,8 +41,6 @@ app.use(passport.initialize());
 app.use(express.static(__dirname + '/dist'));
 app.use('/api/users',      users);
 app.use('/api/events',     eventRouter);
-app.use('/api/promotions', promoRouter);
-app.use('/api/leaders',    leaderRouter);
 app.use('/api/favorites',  favoriteRouter);
 
 // catch 404 and forward to error handler

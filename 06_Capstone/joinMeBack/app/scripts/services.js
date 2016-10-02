@@ -27,20 +27,7 @@ angular.module('joinMeApp')
     );
 }])
 
-.factory('promotionFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
-
-}])
-
-.factory('corporateFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
-
-}])
-
-
 .factory('favoriteFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
-
-}])
-
-.factory('feedbackFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 
 }])
 

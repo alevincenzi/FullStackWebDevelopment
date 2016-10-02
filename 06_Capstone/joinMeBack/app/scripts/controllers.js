@@ -134,8 +134,8 @@ function ($scope, $state, favoriteFactory) {
 
 .controller('NewEventController',
     
-['$scope', 'feedbackFactory',
-function ($scope, feedbackFactory) {
+['$scope', 'eventsFactory',
+function ($scope, eventsFactory) {
 
 }])
 
