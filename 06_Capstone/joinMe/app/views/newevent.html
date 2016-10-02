@@ -43,76 +43,110 @@
                     <label for="dateAndTime" class="col-sm-2 control-label">Date<br/>and Time</label>
                     <div class='col-sm-5'>
                         <input type="text" class="form-control" id="dateAndTime" name="dateAndTime"
+                               placeholder="dd.mm.yyyy hh:mm"
                                ng-model="newEvent.dateAndTime" required>
                         <span ng-show="newEventForm.dateAndTime.$error.required && !newEventForm.dateAndTime.$pristine"
                               class="help-block">The date and time is required.</span>
                     </div>
                 </div>
 
+                <!--<div class="form-group">-->
+                    <!--<label for="participants" class="col-sm-2 control-label">Number of participants</label>-->
+                    <!--<div class="col-sm-10">-->
+                        <!--<div class="input-group">-->
+                            <!--<div class="radio">-->
+                                <!--<label><input type="radio" name="participants" checked>Open to everybody</label>-->
+                            <!--</div>-->
+                            <!--<div class="radio">-->
+                                <!--<label><input type="radio" name="participants">At least n participants</label>-->
+                            <!--</div>-->
+                            <!--<div class="radio">-->
+                                <!--<label><input type="radio" name="participants">At most n participants</label>-->
+                            <!--</div>-->
+                            <!--<div class="radio">-->
+                                <!--<label><input type="radio" name="participants">Exactly n participants</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-sm-2">-->
+                                <!--<input type="text" class="form-control" type="number" min="0" max="100"-->
+                                       <!--id="nbParticipants" ng-model="newEvent.nbParticipants">-->
+                            <!--</div>-->
+                            <!--<label for="nbParticipants" class="col-sm-2">participants</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
                 <div class="form-group">
                     <label for="participants" class="col-sm-2 control-label">Number of participants</label>
-                    <div class="col-sm-10">
-                        <div class="input-group">
-                            <div class="radio">
-                                <label><input type="radio" name="participants" checked>Open to everybody</label>
-                            </div>
-                            <div class="radio">
-                                <label><input type="radio" name="participants">At least n participants</label>
-                            </div>
-                            <div class="radio">
-                                <label><input type="radio" name="participants">At most n participants</label>
-                            </div>
-                            <div class="radio">
-                                <label><input type="radio" name="participants">Exactly n participants</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-2">
-                                <input type="text" class="form-control" type="number" min="0" max="100"
-                                       id="nbParticipants" ng-model="newEvent.nbParticipants">
-                            </div>
-                            <label for="nbParticipants" class="col-sm-2">participants</label>
-                        </div>
+                    <div class="col-sm-4">
+
+                        <select id="participants" class="form-control selectpicker" data-width="fit" ng-model="selectedParticipants">
+                            <option value="Open to everybody">Open to everybody</option>
+                            <option value="At least">At least</option>
+                            <option value="At most">At most</option>
+                            <option value="At most">Exactly</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2" ng-show="selectedParticipants!=='Open to everybody'">
+                        <input type="number" class="form-control" min="0" placeholder="100"
+                               id="nbrParticipants" ng-model="nbrParticipants">
                     </div>
                 </div>
-                <div class="form-group">
 
-                </div>
+                <!--<div class="form-group">-->
+                    <!--<label for="cost" class="col-sm-2 control-label">Cost</label>-->
+                    <!--<div class="col-sm-10">-->
+                        <!--<div class="input-group">-->
+                            <!--<div class="radio">-->
+                                <!--<label><input type="radio" name="cost" checked>Free</label>-->
+                            <!--</div>-->
+                            <!--<div class="radio">-->
+                                <!--<label><input type="radio" name="cost">Per person</label>-->
+                            <!--</div>-->
+                            <!--<div class="radio">-->
+                                <!--<label><input type="radio" name="cost">To divide among participants</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-sm-2">-->
+                                <!--<input type="text" class="form-control" type="number" min="0" max="100"-->
+                                       <!--id="costAmount" ng-model="event.costAmount">-->
+                            <!--</div>-->
+                            <!--<label for="nbParticipants" class="col-sm-2">$</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
                 <div class="form-group">
                     <label for="cost" class="col-sm-2 control-label">Cost</label>
-                    <div class="col-sm-10">
-                        <div class="input-group">
-                            <div class="radio">
-                                <label><input type="radio" name="cost" checked>Free</label>
-                            </div>
-                            <div class="radio">
-                                <label><input type="radio" name="cost">Per person</label>
-                            </div>
-                            <div class="radio">
-                                <label><input type="radio" name="cost">To divide among participants</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-2">
-                                <input type="text" class="form-control" type="number" min="0" max="100"
-                                       id="costAmount" ng-model="event.costAmount">
-                            </div>
-                            <label for="nbParticipants" class="col-sm-2">$</label>
-                        </div>
-                    </div>
+                    <div class="col-sm-4">
 
+                        <select id="cost" class="form-control selectpicker" data-width="fit" ng-model="selectedCost">
+                            <option value="Free">Free</option>
+                            <option value="Per person">Per person</option>
+                            <option value="To divide among participants">To divide among participants</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2" ng-show="selectedCost!=='Free'">
+                            <input type="number" class="form-control" min="0" placeholder="$"
+                                   id="costAmounts" ng-model="costAmount">
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="tags" class="col-sm-2 control-label">Tags</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="tags" name="tags" ng-model="newEvent.tags" required>
+                        <input type="text" class="form-control" id="tags" name="tags" ng-model="newEvent.tags"
+                               required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary" ng-disabled="newEventForm.$invalid">Create Event
+                        <button type="submit" class="btn btn-primary" ng-disabled="newEventForm.$invalid">Create
+                            Event
                         </button>
                     </div>
                 </div>

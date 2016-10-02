@@ -300,25 +300,42 @@ function ($scope, feedbackFactory) {
 
         $scope.newEvent = {
             title: "",
+            image : "../images/joinme-icon.png",
             description: "",
             place : "",
             dateAndTime: "",
             tags:""
         };
 
+        $scope.selectedCost = 'Free';
+        $scope.selectedParticipants = 'Open to everybody';
+        $scope.costAmount=0;
+        $scope.nbrParticipants=0;
+
+
         $scope.createNewEvent = function () {
 
             console.log('Adding new event ', $scope.newEvent);
+            $scope.newEvent.participants= $scope.selectedParticipants;
+            if ($scope.selectedParticipants !== 'Open to everybody'){
+                $scope.newEvent.participants= $scope.newEvent.participants + " " + $scope.nbrParticipants + " participants";
+            }
 
-            feedbackFactory.save($scope.newEvent);
-            $scope.newEvent = {
-                title: "",
-                description: "",
-                place : "",
-                dateAndTime: "",
-                tags:""
-            };
-            $scope.newEventForm.$setPristine();
+            if ($scope.selectedCost !== 'Free'){
+                $scope.newEvent.cost= $scope.costAmount + "$ " + $scope.selectedCost;
+            }else{
+                $scope.newEvent.cost= $scope.selectedCost;
+            }
+
+//            feedbackFactory.save($scope.newEvent);
+//            $scope.newEvent = {
+//                title: "",
+//                description: "",
+//                place : "",
+//                dateAndTime: "",
+//                tags:""
+//            };
+//            $scope.newEventForm.$setPristine();
         };
     }]
 )
