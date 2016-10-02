@@ -1,6 +1,6 @@
 <div class="container">
 
-    <div class="row row-content-last" ng-if="!hasEvents">
+    <div class="row row-content-last" ng-show="noEvents()">
         <div class="panel panel-default">
             <div class="panel-body">
                 <p class="text-center">You did not join any event yet!</p>
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div ng-if="hasEvents">
+    <div ng-show="hasEvents()">
         <div class="row row-content-last">
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">

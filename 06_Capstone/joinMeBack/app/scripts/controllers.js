@@ -157,7 +157,7 @@ function ($scope, $rootScope, $state, $stateParams, eventsFactory, commentsFacto
     
     $scope.deleteEvent = function() {
         eventsFactory.delete({id: $scope.eevent._id});
-        $state.go('app');
+        $state.go('app.myevents');
     };
     
     $scope.leaveEvent = function() {
@@ -185,7 +185,7 @@ function ($scope, $rootScope, $state, $stateParams, eventsFactory, commentsFacto
 function ($scope, $rootScope, eventsFactory, AuthFactory) {
 
     $scope.loggedIn = AuthFactory.isAuthenticated();
-    $scope.hasEvents = false;
+    var completed = false;
 
     if ($scope.loggedIn) {
         $scope.userid = AuthFactory.getUserId();
@@ -199,7 +199,7 @@ function ($scope, $rootScope, eventsFactory, AuthFactory) {
     eventsFactory.query({ "createdBy" : $scope.userid }).$promise.then(
         function (response) {
             $scope.events = response;
-            $scope.hasEvents = ($scope.events.length !== 0);
+            completed = true;
         },
         function (response) {
             $scope.message = "Error: " + response.status + " " + response.statusText;
@@ -214,6 +214,14 @@ function ($scope, $rootScope, eventsFactory, AuthFactory) {
             return str;
         }
     };
+    
+    $scope.hasEvents = function() {
+        return completed && ($scope.events.length !== 0);
+    };   
+    
+    $scope.noEvents = function() {
+        return completed && ($scope.events.length === 0);
+    };
 }])
 
 .controller('JoinedEventsController',
@@ -222,7 +230,7 @@ function ($scope, $rootScope, eventsFactory, AuthFactory) {
 function ($scope, $rootScope, joinsFactory, AuthFactory) {
 
     $scope.loggedIn = AuthFactory.isAuthenticated();
-    $scope.hasEvents = false;
+    var completed = false;
     
     if ($scope.loggedIn) {
         $scope.userid = AuthFactory.getUserId();
@@ -231,7 +239,7 @@ function ($scope, $rootScope, joinsFactory, AuthFactory) {
     joinsFactory.query(
         function (response) {
             $scope.events = response.events;
-            $scope.hasEvents = ($scope.events.length !== 0);
+            completed = true;
         },
         function (response) {
             $scope.message = "Error: " + response.status + " " + response.statusText;
@@ -250,6 +258,14 @@ function ($scope, $rootScope, joinsFactory, AuthFactory) {
         else {
             return str;
         }
+    };
+    
+    $scope.hasEvents = function() {
+        return completed && ($scope.events.length !== 0);
+    };   
+    
+    $scope.noEvents = function() {
+        return completed && ($scope.events.length === 0);
     };
 }])
 
