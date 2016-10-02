@@ -40,12 +40,7 @@ eventRouter.route('/')
                 
                 console.log('Event created!');
                 
-                var id = eevent._id;
-                
-                res.writeHead(200, {
-                    'Content-Type': 'text/plain'
-                });
-                res.end('Added the event with id: ' + id);
+                res.json(eevent);
             }
         );
     }

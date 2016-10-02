@@ -120,23 +120,75 @@ function ($scope, $state, $stateParams, eventsFactory, commentsFactory) {
 
 .controller('MyEventsController',
 
-['$scope', 'corporateFactory',
-function ($scope, corporateFactory) {
+['$scope', 'eventsFactory',
+function ($scope, eventsFactory) {
 
 }])
 
 .controller('JoinedEventsController',
 
-['$scope', '$state', 'favoriteFactory',
-function ($scope, $state, favoriteFactory) {
+['$scope', '$state', 'eventsFactory',
+function ($scope, $state, eventsFactory) {
 
 }])
 
 .controller('NewEventController',
     
-['$scope', 'eventsFactory',
-function ($scope, eventsFactory) {
+['$scope', '$state', 'eventsFactory',
+function ($scope, $state, eventsFactory) {
 
+    $scope.newEvent = {
+        title: "",
+        image : "../images/joinme-icon.png",
+        description: "",
+        place : "",
+        dateAndTime: "",
+        tags:""
+    };
+
+    $scope.selectedCost = 'Free';
+    $scope.selectedParticipants = 'Open to everybody';
+    $scope.costAmount=0;
+    $scope.nbrParticipants=0;
+
+    $scope.createNewEvent = function () {
+
+        console.log('Adding new event ', $scope.newEvent);
+        
+        $scope.newEvent.participants = $scope.selectedParticipants;
+        
+        if ($scope.selectedParticipants !== 'Open to everybody'){
+            $scope.newEvent.participants =
+                $scope.newEvent.participants + " " + $scope.nbrParticipants + " participants";
+        }
+
+        if ($scope.selectedCost !== 'Free'){
+            $scope.newEvent.cost= $scope.costAmount + "$ " + $scope.selectedCost;
+        }else{
+            $scope.newEvent.cost= $scope.selectedCost;
+        }
+
+        eventsFactory.save($scope.newEvent,
+            function(response) {
+                console.log(response);
+                console.log(response._id);
+                $state.go('app.eventdetail', { id: response._id });
+            }
+        );
+        
+        /*
+        $scope.newEvent = {
+            title: "",
+            image : "../images/joinme-icon.png",
+            description: "",
+            place : "",
+            dateAndTime: "",
+            tags:""
+        };
+        
+        $scope.newEventForm.$setPristine();
+        */
+    };
 }])
 
 .controller('LoginController',

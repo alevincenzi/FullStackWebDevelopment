@@ -23,7 +23,7 @@ angular.module('joinMeApp', ['ui.router','ngResource','ngDialog'])
             })
         
             .state('app.eventdetail', {
-                url: '/event/:id',
+                url: 'events/:id',
                 views: {
                     'content@': {
                         templateUrl : 'views/eventdetail.html',

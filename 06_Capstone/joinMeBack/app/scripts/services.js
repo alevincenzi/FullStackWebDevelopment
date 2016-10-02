@@ -5,17 +5,12 @@ angular.module('joinMeApp')
 .constant("baseURL", "http://joinme.mybluemix.net/api/")
 
 .factory('eventsFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
-/*
-    var eventsF = {};
 
-    eventsF.events = $resource(baseURL + "events/:id", null, {'update': { method: 'PUT' }});
-
-    return eventsF;*/
-    return $resource(baseURL + "events/:id", null, {
-            'update': {
-                method: 'PUT'
-            }
-        });
+    return $resource(
+        baseURL + "events/:id",
+        null,
+        { 'update': { method: 'PUT' }}
+    );
 }])
 
 .factory('commentsFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
@@ -25,10 +20,6 @@ angular.module('joinMeApp')
         {id:"@id", commentId: "@commentId"},
         { 'update': { method: 'PUT'}}
     );
-}])
-
-.factory('favoriteFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
-
 }])
 
 .factory('$localStorage', ['$window', function($window) {
