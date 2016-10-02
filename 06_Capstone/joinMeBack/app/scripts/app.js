@@ -13,7 +13,7 @@ angular.module('joinMeApp', ['ui.router','ngResource','ngDialog'])
                     },
                     'content': {
                         templateUrl : 'views/home.html',
-                        controller  : 'HomeController'
+                        controller  : 'EventsController'
                     },
                     'footer': {
                         templateUrl : 'views/footer.html',

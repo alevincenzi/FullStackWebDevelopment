@@ -11,10 +11,10 @@ if (mongo) {
       console.log("No mongo found");
     }  
   } else {
-    conn_str = 'mongodb://localhost:27017';
+    conn_str = 'mongodb://localhost:27017/db';
   }
 } else {
-  conn_str = 'mongodb://localhost:27017';
+  conn_str = 'mongodb://localhost:27017/db';
 }
 
 module.exports = {

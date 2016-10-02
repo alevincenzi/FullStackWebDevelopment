@@ -3,47 +3,48 @@
 
         <div class="panel-heading col-xs-12 col-sm-12">
             <div class="col-xs-2 col-sm-2">
-                <img class="media-object img-thumbnail"
-                     ng-src={{event.image}} alt="imageEvent">
+                <img class=" img-responsive"
+                     ng-src={{eevent.image}} alt="imageEvent">
             </div>
             <div class="col-xs-10 col-sm-10">
                 <div>
                     <div class="col-xs-10 col-sm-10">
-                        <h2 class="media-heading">{{event.title}}</h2>
+                        <h2 class="media-heading">{{eevent.title}}</h2>
                     </div>
                     <div class="col-xs-2 col-sm-2">
-                        Created by: <span class="label label-primary">{{event.owner}}</span>
+                        Created by: <span class="label label-primary">{{eevent.createdBy.username}}</span>
                     </div>
                 </div>
 
                 <br>
-                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{event.place}}
+                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{eevent.place}}
                 <br>
-                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{event.dateAndTime}}
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{eevent.dateAndTime}}
                 <br>
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{event.participants}}
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{eevent.participants}}
                 <br>
-                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> {{event.cost}}
+                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> {{eevent.cost}}
                 <br>
             </div>
         </div>
 
         <div class="panel-body col-xs-12 col-sm-12">
             <br>
-            <p>{{event.description}}</p>
-            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{event.tags}}
+            <p>{{eevent.description}}</p>
+            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{eevent.tags}}
             <br>
             <button type="button" class="btn btn-success pull-right">Join</button>
+            <button type="button" class="btn btn-danger pull-right">Delete</button>
+            <button type="button" class="btn btn-warning pull-right">Leave</button>
         </div>
 
         <div class="col-xs-9 col-xs-offset-1">
             <h4>Comments</h4>
             <ul class="list-unstyled">
-                <li ng-repeat="comment in event.comments | orderBy:orderText">
+                <li ng-repeat="comment in eevent.comments | orderBy:orderText">
                     <blockquote>
                         <p>{{comment.comment}}</p>
-                        <!--<footer>{{comment.postedBy.firstname}} {{comment.postedBy.lastname}}, {{comment.updatedAt | date:'MMM. dd, yyyy'}}</footer>-->
-                        <footer>{{comment.postedBy}}</footer>
+                        <footer>{{comment.postedBy.username}}, {{comment.updatedAt | date:'MMM. dd, yyyy'}}</footer>
                     </blockquote>
                 </li>
             </ul>

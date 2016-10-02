@@ -12,24 +12,30 @@
 
         <div class="col-xs-12 col-sm-12">
             <ul class="list-inline">
-                <li ng-repeat="event in events | filter:searchText"
+                <li ng-repeat="eevent in events | filter:searchText"
                      >
                     <div class="media">
                         <div class="media-left media-top">
-                            <a href="#/event/{{event._id}}">
+                            <a>
                                 <img class="media-object img-thumbnail"
-                                     ng-src={{event.image}} alt="imageEvent">
+                                     ng-src={{eevent.image}} alt="imageEvent">
                             </a>
                         </div>
                         <div class="media-body">
-                            <h2 class="media-heading">{{event.title}}</h2>
-                            <span class="badge">{{event.participants}}</span></h2>
-                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{event.dateAndTime}}
-                            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <span class="label label-danger">{{event.place}}</span>
-                            <p><strong>Cost: </strong>{{event.cost}}</p>
-                            <p>{{event.description}}</p>
-                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> <span class="label label-primary">{{event.tags}}</span>
-                            <p> </p>
+                            <h2 class="media-heading">{{eevent.title}}</h2>
+                            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                            <span class="label label-danger">{{eevent.place}}</span>
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{eevent.dateAndTime}}
+                            <br>
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{eevent.participants}}
+                            <br>
+                            <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> {{eevent.cost}}
+                            <br>
+                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{eevent.tags}}
+                            <p>{{ellipsify(eevent.description)}}</p>
+                            <a ui-sref="app.eventdetail({id: eevent._id})">
+                                <button type="button" class="btn btn-success md pull-right" ng-if="loggedIn">More...</button>
+                            </a>
                         </div>
                     </div>
                 </li>

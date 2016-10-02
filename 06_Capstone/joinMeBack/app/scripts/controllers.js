@@ -30,18 +30,6 @@ function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
         $state.go('app', {}, { reload: true });
     };
 
-    $scope.collapseMenu = function() {
-        var screenWidth = window.innerWidth;
-        if (screenWidth < 768) {
-            setTimeout(function() {
-            // console.log($state.current.name);
-                if (!$state.is('app.profile')) {
-                    jQuery("#navbar").collapse('hide');
-                }
-            }, 500);
-        }
-    };  
-  
     $rootScope.$on('login:Successful', function() {
         $scope.loggedIn = AuthFactory.isAuthenticated();
         $scope.username = AuthFactory.getUsername();
@@ -53,26 +41,81 @@ function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
     });
   
     $scope.stateis = function(curstate) {
-        var stateMatched = $state.is(curstate);
-        if (!stateMatched) {
-            $scope.collapseMenu();
-        }
-        return stateMatched;  
+        return $state.is(curstate);  
     };
 }])
 
-.controller('HomeController',
+.controller('EventsController',
 
-['$scope', 'menuFactory', 'corporateFactory', 'promotionFactory',
-function ($scope, menuFactory, corporateFactory, promotionFactory) {
+['$scope', '$rootScope', 'eventsFactory', 'AuthFactory',
+function ($scope, $rootScope, eventsFactory, AuthFactory) {
 
+    $scope.loggedIn = AuthFactory.isAuthenticated();
+
+    if ($scope.loggedIn) {
+        $scope.userid = AuthFactory.getUserId();
+    }
+
+    $rootScope.$on('login:Successful', function() {
+        $scope.loggedIn = AuthFactory.isAuthenticated();
+        $scope.userid   = AuthFactory.getUserId();
+    });
+
+    eventsFactory.query(
+        function (response) {
+            $scope.events = response;
+        },
+        function (response) {
+            $scope.message = "Error: " + response.status + " " + response.statusText;
+        }
+    );
+
+    $scope.ellipsify = function(str) {
+        if (str.length > 120) {
+            return (str.substring(0, 120) + "...");
+        }
+        else {
+            return str;
+        }
+    };
 }])
 
 .controller('EventDetailController',
 
-['$scope', '$state', '$stateParams', 'menuFactory', 'commentFactory',
-function ($scope, $state, $stateParams, menuFactory, commentFactory) {
+['$scope', '$state', '$stateParams', 'eventsFactory', 'commentsFactory',
+function ($scope, $state, $stateParams, eventsFactory, commentsFactory) {
 
+    $scope.eevent = {};
+
+    $scope.message = "";
+    $scope.eevent = eventsFactory.get({
+            id: $stateParams.id
+        })
+        .$promise.then(
+            function (response) {
+                $scope.eevent = response;
+            },
+            function (response) {
+                $scope.message = "Error: " + response.status + " " + response.statusText;
+            }
+        );
+
+    $scope.mycomment = {
+        comment: ""
+    };
+
+    $scope.submitComment = function () {
+
+        commentsFactory.save({id: $stateParams.id}, $scope.mycomment);
+
+        $state.go($state.current, {}, {reload: true});
+        
+        $scope.commentForm.$setPristine();
+
+        $scope.mycomment = {
+            comment: ""
+        };
+    };
 }])
 
 .controller('MyEventsController',
