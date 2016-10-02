@@ -120,9 +120,38 @@ function ($scope, $state, $stateParams, eventsFactory, commentsFactory) {
 
 .controller('MyEventsController',
 
-['$scope', 'eventsFactory',
-function ($scope, eventsFactory) {
+['$scope', '$rootScope', 'eventsFactory', 'AuthFactory',
+function ($scope, $rootScope, eventsFactory, AuthFactory) {
 
+    $scope.loggedIn = AuthFactory.isAuthenticated();
+
+    if ($scope.loggedIn) {
+        $scope.userid = AuthFactory.getUserId();
+    }
+
+    $rootScope.$on('login:Successful', function() {
+        $scope.loggedIn = AuthFactory.isAuthenticated();
+        $scope.userid   = AuthFactory.getUserId();
+    });
+
+    eventsFactory.query({ "createdBy" : $scope.userid }).$promise.then(
+        function (response) {
+            console.log(AuthFactory.getUserId());
+            $scope.events = response;
+        },
+        function (response) {
+            $scope.message = "Error: " + response.status + " " + response.statusText;
+        }
+    );
+
+    $scope.ellipsify = function(str) {
+        if (str.length > 120) {
+            return (str.substring(0, 120) + "...");
+        }
+        else {
+            return str;
+        }
+    };
 }])
 
 .controller('JoinedEventsController',
@@ -175,19 +204,6 @@ function ($scope, $state, eventsFactory) {
                 $state.go('app.eventdetail', { id: response._id });
             }
         );
-        
-        /*
-        $scope.newEvent = {
-            title: "",
-            image : "../images/joinme-icon.png",
-            description: "",
-            place : "",
-            dateAndTime: "",
-            tags:""
-        };
-        
-        $scope.newEventForm.$setPristine();
-        */
     };
 }])
 
